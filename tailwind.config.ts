@@ -25,6 +25,8 @@ const config: Config = {
       },
       backgroundImage: {
         "hero-pattern": "url('../assets/herobg.png')",
+        "navbar-logo-dark": "url('../assets/marco-logo-dark.svg')",
+        "navbar-logo-light": "url('../assets/marco-logo-light.svg')",
       },
     },
   },

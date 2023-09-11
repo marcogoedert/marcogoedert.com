@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { github } from "../assets";
-import { projects } from "../constants";
+// import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import ReactParallaxTilt from "react-parallax-tilt";
 import Image from "next/image";
@@ -96,9 +96,9 @@ const Works = () => {
       </div>
 
       <div className="mt-20 flex flex-wrap gap-7">
-        {projects.map((project, index) => (
+        {/* {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
-        ))}
+        ))} */}
       </div>
     </>
   );

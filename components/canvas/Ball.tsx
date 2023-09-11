@@ -31,7 +31,6 @@ const Ball = ({ imgUrl }: { imgUrl: string }) => {
           rotation={[2 * Math.PI, 0, 6.25]}
           scale={1}
           map={decal}
-          // flatShading
         />
       </mesh>
     </Float>
@@ -41,7 +40,7 @@ const Ball = ({ imgUrl }: { imgUrl: string }) => {
 const BallCanvas = ({ icon }: { icon: string }) => {
   return (
     <Canvas
-      frameloop="demand"
+      frameloop="always"
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
     >

@@ -1,28 +1,28 @@
 "use client";
 
-import React, { ChangeEvent, useRef, useState } from "react";
+// import React, { ChangeEvent, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { slideIn } from "../utils/motion";
 import SectionWrapper from "@/hoc/SectionWrapper";
 import EarthCanvas from "./canvas/Earth";
 
 const Contact = () => {
-  const formRef = React.createRef<HTMLFormElement>();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  // const formRef = React.createRef<HTMLFormElement>();
+  // const [form, setForm] = useState({
+  //   name: "",
+  //   email: "",
+  //   message: "",
+  // });
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (
-    e: ChangeEvent
-  ) => {};
+  // const handleChange: React.ChangeEventHandler<HTMLInputElement> = (
+  //   e: ChangeEvent
+  // ) => {};
 
-  const handleSubmit = (e: SubmitEvent) => {
-    e.preventDefault();
-  };
+  // const handleSubmit = (e: SubmitEvent) => {
+  //   e.preventDefault();
+  // };
 
   return (
     <div
@@ -32,7 +32,7 @@ const Contact = () => {
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
       >
-        <p className="sectionSubText">Get in touch</p>
+        {/* <p className="sectionSubText">Get in touch</p>
         <h3 className="sectionHeadText">Contact.</h3>
 
         <form ref={formRef} className="mt-12 flex flex-col gap-8">
@@ -75,7 +75,7 @@ const Contact = () => {
           >
             {loading ? "Sending..." : "Send"}
           </button>
-        </form>
+        </form> */}
       </motion.div>
 
       <motion.div

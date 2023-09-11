@@ -1,16 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
 
 export default function Navbar() {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const onClick = useCallback(() => {
+    buttonRef.current!.classList.toggle("open");
+    setToggle((prev) => !prev);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,22 +32,19 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className={`paddingX w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
-      }`}
-    >
+    <nav className="paddingX w-full flex items-center py-5 fixed  top-0 z-20 backdrop-blur-sm m-0">
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
+          prefetch={false}
           href="/"
-          className="flex items-center gap-2"
+          className="flex items-center gap-4"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
-          <Image src={""} alt="logo" className="w-9 h-9 object-contain" />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex ">
+          <div className="w-9 h-9 object-contain bg-navbar-logo-dark bg-cover" />
+          <p className="text-white text-[18px] font-bold cursor-pointer hidden md:flex">
             Marco Goedert &nbsp;
           </p>
         </Link>
@@ -63,12 +64,17 @@ export default function Navbar() {
         </ul>
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
-          <Image
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain"
-            onClick={() => setToggle(!toggle)}
-          />
+          <button
+            ref={buttonRef}
+            id="menu-btn"
+            type="button"
+            className="z-40 block bg-transparent border-0 mt-1 mr-3 hamburger focus:outline-none lg:hidden"
+            onClick={onClick}
+          >
+            <span className="hamburger-top"></span>
+            <span className="hamburger-middle"></span>
+            <span className="hamburger-bottom"></span>
+          </button>
 
           <div
             className={`${
