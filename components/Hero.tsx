@@ -49,7 +49,9 @@ export default function Hero() {
             </button>
           </div>
         </span>
-        <span className="w-full h-full">{/* <EarthCanvas /> */}</span>
+        <span className="w-full h-full">
+          <EarthCanvas />
+        </span>
       </div>
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
