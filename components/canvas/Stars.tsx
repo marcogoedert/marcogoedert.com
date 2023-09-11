@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useRef, Suspense } from "react";
+import React, { useState, Suspense, ReactNode } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
-import * as random from "maath/random/dist/maath-random.esm";
+import * as random from "maath/random";
 
-const Stars = (props) => {
-  const ref = useRef();
-  const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
+const Stars = () => {
+  const ref = React.createRef<PointsT>();
+  const [sphere] = useState<Float32Array>(
+    () =>
+      random.inSphere(new Float32Array(5000), { radius: 1.2 }) as Float32Array
   );
 
   useFrame((state, delta) => {
@@ -18,7 +19,7 @@ const Stars = (props) => {
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled>
         <PointMaterial
           transparent
           color="#f272c8"

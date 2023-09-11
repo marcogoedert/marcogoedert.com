@@ -1,8 +1,10 @@
 import { StaticImageData } from "next/image";
-
+import { Points } from "@types/three";
 export {};
 
 declare global {
+  export type PointsT = Points;
+
   interface IService {
     title: string;
     icon: StaticImageData;
