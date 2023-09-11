@@ -9,7 +9,10 @@ const Stars = () => {
   const ref = React.createRef<PointsT>();
   const [sphere] = useState<Float32Array>(
     () =>
-      random.inSphere(new Float32Array(5000), { radius: 1.2 }) as Float32Array
+      random.inSphere(new Float32Array(5000), {
+        radius: 1.2,
+        center: [0, 0, 0],
+      }) as Float32Array
   );
 
   useFrame((state, delta) => {
