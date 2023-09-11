@@ -1,6 +1,6 @@
 "use client"; // Error components must be Client Components
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Error({
   error,
@@ -9,9 +9,12 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
+  const [errorObj, setErrorObj] = useState<Error | null>(null);
+
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
+    setErrorObj(error);
   }, [error]);
 
   return (
@@ -25,7 +28,7 @@ export default function Error({
       >
         Try again
       </button>
-      {JSON.stringify(error)}
+      {JSON.stringify(errorObj)}
     </div>
   );
 }
