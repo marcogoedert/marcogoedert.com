@@ -15,11 +15,11 @@ export default function Home() {
         <div className="relative z-0 bg-primary">
           <div className="relative z-0">
             <Hero />
-            <StarsCanvas />
+            {/* <StarsCanvas /> */}
           </div>
           <About />
           <Experience />
-          <Tech />
+          {/* <Tech /> */}
           {/* <Works /> */}
         </div>
       </main>
