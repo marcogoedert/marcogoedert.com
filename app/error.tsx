@@ -21,6 +21,7 @@ export default function Error({
     <div>
       <h2>Something went wrong!</h2>
       <button
+        className="p-2 border rounded border-gray-500 dark:border-gray-400"
         onClick={
           // Attempt to recover by trying to re-render the segment
           () => reset()
@@ -28,7 +29,8 @@ export default function Error({
       >
         Try again
       </button>
-      {JSON.stringify(errorObj)}
+      <br />
+      Error: {JSON.stringify(errorObj)}
     </div>
   );
 }

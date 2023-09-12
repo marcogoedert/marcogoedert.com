@@ -1,48 +1,84 @@
 "use client";
 
-import React, { useState, Suspense, ReactNode } from "react";
+import React, { Suspense, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial, Preload } from "@react-three/drei";
-import * as random from "maath/random";
+import { Preload } from "@react-three/drei";
 
-const Stars = () => {
-  const ref = React.createRef<PointsT>();
-  const [sphere] = useState<Float32Array>(
-    () =>
-      random.inSphere(new Float32Array(5000), {
-        radius: 1.2,
-        center: [0, 0, 0],
-      }) as Float32Array
-  );
+import CanvasLoader from "../Loader";
+
+import * as THREE from "three";
+
+const CustomGeometryParticles = (props: { count: number; shape: string }) => {
+  const { count, shape } = props;
+
+  // This reference gives us direct access to our points
+  const points = React.createRef<PointsT>();
 
   useFrame((state, delta) => {
-    ref.current!.rotation.x -= delta / 10;
-    ref.current!.rotation.y -= delta / 15;
+    points.current!.rotation.x += delta / 10;
+    points.current!.rotation.y += delta / 15;
   });
 
+  // Generate our positions attributes array
+  const particlesPosition = useMemo(() => {
+    const positions = new Float32Array(count * 3);
+
+    if (shape === "box") {
+      for (let i = 0; i < count; i++) {
+        let x = (Math.random() - 0.5) * 2;
+        let y = (Math.random() - 0.5) * 2;
+        let z = (Math.random() - 0.5) * 2;
+
+        positions.set([x, y, z], i * 3);
+      }
+    }
+
+    if (shape === "sphere") {
+      const distance = 1;
+
+      for (let i = 0; i < count; i++) {
+        const theta = THREE.MathUtils.randFloatSpread(360);
+        const phi = THREE.MathUtils.randFloatSpread(360);
+
+        let x = distance * Math.sin(theta) * Math.cos(phi);
+        let y = distance * Math.sin(theta) * Math.sin(phi);
+        let z = distance * Math.cos(theta);
+
+        positions.set([x, y, z], i * 3);
+      }
+    }
+
+    return positions;
+  }, [count, shape]);
+
   return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled>
-        <PointMaterial
-          transparent
-          color="#f272c8"
-          size={0.002}
-          sizeAttenuation={true}
-          depthWrite={false}
+    <points ref={points}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={particlesPosition.length / 3}
+          array={particlesPosition}
+          itemSize={3}
         />
-      </Points>
-    </group>
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.003}
+        color="#fff"
+        transparent
+        sizeAttenuation
+        depthWrite={false}
+      />
+    </points>
   );
 };
 
 const StarsCanvas = () => {
   return (
-    <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1] }}>
-        <Suspense fallback={null}>
-          <Stars />
+    <div className="w-full h-full absolute inset-0 z-[-1]">
+      <Canvas camera={{ position: [0, 0, 0.01] }}>
+        <Suspense fallback={<CanvasLoader />}>
+          <CustomGeometryParticles count={5000} shape="sphere" />
         </Suspense>
-
         <Preload all />
       </Canvas>
     </div>
