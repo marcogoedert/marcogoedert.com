@@ -15,8 +15,8 @@ const CustomGeometryParticles = (props: { count: number; shape: string }) => {
   const points = React.createRef<PointsT>();
 
   useFrame((state, delta) => {
-    points.current!.rotation.x += delta / 10;
-    points.current!.rotation.y += delta / 15;
+    points.current!.rotation.x += delta / 20;
+    points.current!.rotation.y += delta / 30;
   });
 
   // Generate our positions attributes array
@@ -34,7 +34,7 @@ const CustomGeometryParticles = (props: { count: number; shape: string }) => {
     }
 
     if (shape === "sphere") {
-      const distance = 1;
+      const distance = 1.3;
 
       for (let i = 0; i < count; i++) {
         const theta = THREE.MathUtils.randFloatSpread(360);
@@ -74,10 +74,10 @@ const CustomGeometryParticles = (props: { count: number; shape: string }) => {
 
 const StarsCanvas = () => {
   return (
-    <div className="w-full h-full absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 0.01] }}>
+    <div className="w-screen left-0 col-start-1 h-[41rem] absolute inset-0 z-[-1]">
+      <Canvas camera={{ position: [0, 0, 0.1] }}>
         <Suspense fallback={<CanvasLoader />}>
-          <CustomGeometryParticles count={5000} shape="sphere" />
+          <CustomGeometryParticles count={3000} shape="sphere" />
         </Suspense>
         <Preload all />
       </Canvas>

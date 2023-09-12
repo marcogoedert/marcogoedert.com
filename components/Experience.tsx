@@ -66,7 +66,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
 const Experience = () => {
   return (
     <>
-      <motion.div variants={textVariant(0.5)}>
+      <motion.div variants={textVariant(0)}>
         <p className="sectionSubText text-center">What I have done so far</p>
         <h2 className="sectionHeadText text-center">Work Experience.</h2>
       </motion.div>

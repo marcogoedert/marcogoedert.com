@@ -1,10 +1,20 @@
 {
   "name": "marco-goedert",
-  "version": "0.1.0",
   "private": true,
+  "description": "marcogoedert.com - Portfolio",
+  "version": "0.1.0",
+  "author": "Marco Goedert <maarcoagg@gmail.com>",
   "scripts": {
-    "dev": "next dev",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "build:dev": "next build",
     "build": "next build",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --browser chrome",
+    "dev": "next dev",
+    "export": "next export",
+    "format": "prettier --check \"./**/*.{js,jsx,ts,tsx}\"",
     "start": "next start",
     "lint": "next lint"
   },

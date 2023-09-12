@@ -48,7 +48,7 @@ const About = () => {
     <>
       <motion.div variants={textVariant(0)}>
         <p className="sectionSubText">Introduction</p>
-        <h2 className="sectionHeadText">Overview.</h2>
+        <h2 className="sectionHeadText">About me.</h2>
       </motion.div>
 
       <motion.p
@@ -72,4 +72,4 @@ const About = () => {
   );
 };
 
-export default SectionWrapper(About, "about");
+export default SectionWrapper(About, "about", "bg-neutral-900");

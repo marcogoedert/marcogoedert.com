@@ -46,16 +46,12 @@ const services: IService[] = [
     icon: web,
   },
   {
-    title: "React Native Developer",
-    icon: mobile,
-  },
-  {
     title: "Backend Developer",
-    icon: backend,
+    icon: creator,
   },
   {
     title: "DevOps Developer",
-    icon: creator,
+    icon: mobile,
   },
 ];
 
