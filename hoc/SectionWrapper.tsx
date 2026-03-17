@@ -1,5 +1,4 @@
 import Grid from "@/components/Grid";
-import { motion } from "framer-motion";
 import { ElementType } from "react";
 
 const SectionWrapper = (
@@ -9,16 +8,7 @@ const SectionWrapper = (
 ) =>
   function HOC() {
     return (
-      <motion.section
-        variants={{
-          hidden: {},
-          show: { transition: { staggerChildren: 0.5, delayChildren: 0.5 } },
-        }}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        className="col-start-2"
-      >
+      <section className="col-start-2">
         <div
           id={idName}
           className={
@@ -32,7 +22,7 @@ const SectionWrapper = (
             </div>
           </Grid>
         </div>
-      </motion.section>
+      </section>
     );
   };
 

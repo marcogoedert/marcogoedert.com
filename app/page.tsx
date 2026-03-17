@@ -23,8 +23,6 @@ export default function Home() {
           <Hero />
           <About />
           <Experience />
-          {/* <Tech /> */}
-          {/* <Works /> */}
         </Grid>
       </main>
     </>
