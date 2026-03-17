@@ -27,17 +27,17 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
       </div>
 
       <div className="pb-8">
-        <h3 className="text-white text-xl font-bold">{experience.title}</h3>
-        <p className="text-secondary text-base font-semibold">
+        <h3 className="text-foreground text-xl font-bold">{experience.title}</h3>
+        <p className="text-muted text-base font-semibold">
           {experience.company_name}
         </p>
-        <p className="text-secondary/60 text-sm mt-1">{experience.date}</p>
+        <p className="text-muted/60 text-sm mt-1">{experience.date}</p>
 
         <ul className="mt-4 list-disc ml-5 space-y-2">
           {experience.points.map((point, index) => (
             <li
               key={`experience-point-${index}`}
-              className="text-white-100 text-sm pl-1 tracking-wider"
+              className="text-foreground text-sm pl-1 tracking-wider"
             >
               {point}
             </li>

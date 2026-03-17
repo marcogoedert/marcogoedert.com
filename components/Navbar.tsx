@@ -2,22 +2,21 @@
 
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
-
+import ThemeToggle from "./ThemeToggle";
 import { navLinks } from "../constants";
 
 export default function Navbar() {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLButtonElement>(null);
 
-  const onClick = useCallback(() => {
-    buttonRef.current!.classList.toggle("open");
+  const onMenuToggle = useCallback(() => {
     setToggle((prev) => !prev);
   }, []);
 
   return (
-    <header className="fixed z-10 top-0 backdrop-blur-[8px] w-full transition-color duration-500 border-b border-primary h-16">
-      <div className="grid items-stretch gap-x-4 gap-y-24 grid-cols-[1fr_minmax(auto,880px)_1fr] h-full">
+    <header className="fixed z-10 top-0 backdrop-blur-[8px] w-full transition-colors duration-500 border-b border-border h-16 bg-background/80">
+      <div className="grid items-stretch gap-x-4 grid-cols-[1fr_minmax(auto,880px)_1fr] h-full">
         <div className="col-start-2 flex gap-1 justify-between items-center flex-nowrap">
           <Link
             prefetch={false}
@@ -29,18 +28,20 @@ export default function Navbar() {
             }}
           >
             <div className="w-9 h-9 object-contain bg-navbar-logo-dark bg-cover" />
-            <p className="text-white text-[18px] font-bold cursor-pointer hidden md:flex">
+            <p className="text-foreground text-[18px] font-bold cursor-pointer hidden md:flex">
               Marco Goedert &nbsp;
             </p>
           </Link>
-          <div>
+
+          <div className="flex items-center gap-4">
+            {/* Desktop nav */}
             <ul className="list-none hidden sm:flex flex-row gap-10">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
                   className={`${
-                    active === nav.title ? "text-white" : "text-secondary"
-                  } hover:text-white text-[18px] font-medium cursor-pointer`}
+                    active === nav.title ? "text-foreground" : "text-muted"
+                  } hover:text-foreground text-[18px] font-medium cursor-pointer transition-colors`}
                   onClick={() => setActive(nav.title)}
                 >
                   <a href={`#${nav.id}`}>{nav.title}</a>
@@ -48,45 +49,53 @@ export default function Navbar() {
               ))}
             </ul>
 
-            <div className="sm:hidden flex flex-1 justify-end items-center">
-              <button
-                ref={buttonRef}
-                id="menu-btn"
-                type="button"
-                className="z-40 block bg-transparent border-0 mt-1 mr-3 hamburger focus:outline-none lg:hidden"
-                onClick={onClick}
-              >
-                <span className="hamburger-top"></span>
-                <span className="hamburger-middle"></span>
-                <span className="hamburger-bottom"></span>
-              </button>
+            <ThemeToggle />
 
-              <div
-                className={`${
-                  !toggle ? "hidden" : "flex"
-                } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
-              >
-                <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
-                  {navLinks.map((nav) => (
-                    <li
-                      key={nav.id}
-                      className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                        active === nav.title ? "text-white" : "text-secondary"
-                      }`}
-                      onClick={() => {
-                        setToggle(!toggle);
-                        setActive(nav.title);
-                      }}
-                    >
-                      <a href={`#${nav.id}`}>{nav.title}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            {/* Mobile menu button */}
+            <button
+              ref={menuRef}
+              id="menu-btn"
+              type="button"
+              aria-label={toggle ? "Close menu" : "Open menu"}
+              aria-expanded={toggle}
+              className="sm:hidden flex flex-col gap-[5px] justify-center items-center w-9 h-9 rounded-lg border border-border"
+              onClick={onMenuToggle}
+            >
+              <span
+                className={`block w-5 h-0.5 bg-foreground transition-transform duration-300 ${toggle ? "translate-y-[7px] rotate-45" : ""}`}
+              />
+              <span
+                className={`block w-5 h-0.5 bg-foreground transition-opacity duration-300 ${toggle ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`block w-5 h-0.5 bg-foreground transition-transform duration-300 ${toggle ? "-translate-y-[7px] -rotate-45" : ""}`}
+              />
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile menu dropdown */}
+      {toggle && (
+        <div className="sm:hidden absolute top-16 right-0 w-full bg-surface border-b border-border px-6 py-4 z-20">
+          <ul className="list-none flex flex-col gap-4">
+            {navLinks.map((nav) => (
+              <li
+                key={nav.id}
+                className={`font-medium cursor-pointer text-[16px] ${
+                  active === nav.title ? "text-foreground" : "text-muted"
+                }`}
+                onClick={() => {
+                  setToggle(false);
+                  setActive(nav.title);
+                }}
+              >
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 }
