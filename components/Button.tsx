@@ -14,7 +14,8 @@ export default function Button({ variant, children, ...props }: ButtonProps) {
 
   return (
     <button
-      className={`select-none border border-secondary border-solid backdrop-blur-[8px] flex justify-center items-center outline-none text-sm font-medium h-11 w-max py-3 px-4 transition-all duration-200 rounded-lg ${variantClass} ${props.className}`}
+      {...props}
+      className={`select-none border border-secondary border-solid backdrop-blur-[8px] flex justify-center items-center outline-none text-sm font-medium h-11 w-max py-3 px-4 transition-all duration-200 rounded-lg ${variantClass} ${props.className ?? ""}`}
     >
       {children}
     </button>

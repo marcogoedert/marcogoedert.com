@@ -2,7 +2,11 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
-const montserrat = Montserrat({ subsets: ["latin"], display: "swap" });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
 
 export const metadata: Metadata = {
   title: "Marco Goedert",
@@ -16,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.variable}>{children}</body>
     </html>
   );
 }
