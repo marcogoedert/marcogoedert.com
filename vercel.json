@@ -1,4 +1,4 @@
 {
-  "framework": "nextjs",
-  "nodeVersion": "22.x"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs"
 }
