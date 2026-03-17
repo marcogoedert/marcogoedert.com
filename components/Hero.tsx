@@ -10,9 +10,9 @@ export default function Hero() {
     >
       <h1
         id="description"
-        className="text-white text-4xl leading-loose font-bold flex-wrap"
+        className="text-foreground text-4xl leading-loose font-bold flex-wrap"
       >
-        <span className="text-gray-300">Hello! Olá! ¡Holá!</span>{" "}
+        <span className="text-muted">Hello! Olá! ¡Holá!</span>{" "}
         <WavingHand /> I&apos;m <span className="text-brand">Marco</span>, a
         Porto Alegre 🧉 based space enthusiast 🚀 and DevOps software engineer
         👨‍💻 working with React and Typescript.

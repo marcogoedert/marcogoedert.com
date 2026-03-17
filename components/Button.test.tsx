@@ -10,9 +10,7 @@ describe("Button", () => {
 
   it("applies secondary variant class by default", () => {
     const { container } = render(<Button>Test</Button>);
-    expect(container.firstChild).toHaveClass(
-      "hover:shadow-[0_2px_40px_rgba(255,255,255,0.5)]"
-    );
+    expect(container.firstChild).toHaveClass("hover:bg-brand-muted");
   });
 
   it("passes through native button props", () => {

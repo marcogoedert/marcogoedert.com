@@ -13,13 +13,13 @@ interface ServiceCardProps {
 const ServiceCard = ({ title, icon }: ServiceCardProps) => (
   <div className="xs:w-[250px] w-full">
     <div className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card">
-      <div className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
+      <div className="bg-surface rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
         <Image
           src={icon}
           alt="web-development"
           className="w-16 h-16 object-contain"
         />
-        <h3 className="text-white text-[20px] font-bold text-center">
+        <h3 className="text-foreground text-[20px] font-bold text-center">
           {title}
         </h3>
       </div>
@@ -35,7 +35,7 @@ const About = () => {
         <h2 className="sectionHeadText">About me.</h2>
       </div>
 
-      <p className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]">
+      <p className="mt-4 text-muted text-[17px] max-w-3xl leading-[30px]">
         I&apos;m a skilled software developer with experience in TypeScript and
         JavaScript, and expertise in frameworks like React, Next.js, Node.js,
         and Three.js. I&apos;m a quick learner and collaborate closely with
@@ -53,4 +53,4 @@ const About = () => {
   );
 };
 
-export default SectionWrapper(About, "about", "bg-neutral-900");
+export default SectionWrapper(About, "about", "bg-surface-alt");
