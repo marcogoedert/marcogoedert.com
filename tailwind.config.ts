@@ -24,6 +24,16 @@ const config: Config = {
       screens: {
         xs: "450px",
       },
+      keyframes: {
+        wave: {
+          "0%, 100%": { transform: "rotate(0deg)" },
+          "25%": { transform: "rotate(20deg)" },
+          "75%": { transform: "rotate(-10deg)" },
+        },
+      },
+      animation: {
+        wave: "wave 0.4s ease-in-out 0.5s 3",
+      },
       backgroundImage: {
         "hero-pattern": "url('../assets/herobg.png')",
         "navbar-logo-dark": "url('../assets/marco-logo-dark.svg')",
