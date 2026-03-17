@@ -10,16 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#1f1f1f",
-        secondary: "#aaa6c3",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
-        "white-100": "#f3f3f3",
-        brand: "#915EFF",
+        // Semantic tokens — resolve via CSS custom properties
+        background: "var(--color-bg)",
+        surface: "var(--color-surface)",
+        "surface-alt": "var(--color-surface-alt)",
+        foreground: "var(--color-text)",
+        muted: "var(--color-text-muted)",
+        border: "var(--color-border)",
+        brand: "var(--color-brand)",
+        "brand-muted": "var(--color-brand-muted)",
       },
       boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
+        card: "0px 35px 120px -15px rgba(0,0,0,0.3)",
       },
       screens: {
         xs: "450px",
@@ -35,7 +37,6 @@ const config: Config = {
         wave: "wave 0.4s ease-in-out 0.5s 3",
       },
       backgroundImage: {
-        "hero-pattern": "url('../assets/herobg.png')",
         "navbar-logo-dark": "url('../assets/marco-logo-dark.svg')",
         "navbar-logo-light": "url('../assets/marco-logo-light.svg')",
       },
