@@ -10,7 +10,7 @@ export default function Button({ variant, children, ...props }: ButtonProps) {
     secondary: "hover:shadow-[0_2px_40px_rgba(255,255,255,0.5)]",
   };
 
-  let variantClass = variant ? variants[variant] : variants.secondary;
+  const variantClass = variant ? variants[variant] : variants.secondary;
 
   return (
     <button

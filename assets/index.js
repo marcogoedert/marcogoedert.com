@@ -1,4 +1,3 @@
-import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
 import web from "./web.png";
@@ -16,14 +15,11 @@ import reactjs from "./tech/reactjs.png";
 import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
-import threejs from "./tech/threejs.svg";
-
 import petInformatica from "./company/pet-informatica.jpeg";
 import portosys from "./company/portosys.jpeg";
 import dell from "./company/dell.svg";
 
 export {
-  backend,
   creator,
   mobile,
   web,
@@ -40,7 +36,6 @@ export {
   redux,
   tailwind,
   typescript,
-  threejs,
   petInformatica,
   portosys,
   dell,
