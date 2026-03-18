@@ -30,7 +30,7 @@ export function useTitleMorph(target: string, options: Options = {}): string {
     }
 
     function deleteTo(pivot: string, then: () => void): void {
-      if (textRef.current === pivot) {
+      if (textRef.current.length <= pivot.length) {
         timerRef.current = setTimeout(then, TYPE_MS);
         return;
       }
