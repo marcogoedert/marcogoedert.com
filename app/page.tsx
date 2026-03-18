@@ -1,30 +1,13 @@
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import Grid from "@/components/Grid";
-import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
+import { AnimatedSection } from "@/components/layout/AnimatedSection";
 
 export default function Home() {
   return (
-    <>
-      <main>
-        <a
-          className="hidden"
-          aria-label="Find me on LinkedIn"
-          title="Find me on LinkedIn"
-          rel="me"
-          href="https://www.linkedin.com/in/marco-goedert"
-        >
-          @Marco-Goedert
-        </a>
-        <Navbar />
-        <div id="home" className="h-44" />
-        <Grid id="content">
-          <Hero />
-          <About />
-          <Experience />
-        </Grid>
-      </main>
-    </>
+    <div className="flex flex-col items-center gap-6 text-center">
+      <AnimatedSection index={0}>
+        <p className="font-mono text-sm uppercase tracking-[0.2em] text-muted">
+          Software Engineer
+        </p>
+      </AnimatedSection>
+    </div>
   );
 }

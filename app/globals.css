@@ -2,94 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Light theme (default) ───────────────────────────────────────────────── */
+/* ── Light theme ─────────────────────────────────────────── */
 :root,
 [data-color-scheme="light"] {
   --color-bg: #ffffff;
-  --color-surface: #f3f4f6;
-  --color-surface-alt: #e9eaec;
   --color-text: #111111;
   --color-text-muted: #6b7280;
   --color-border: #d1d5db;
-  --color-brand: #7c3aed;
-  --color-brand-muted: rgba(124, 58, 237, 0.15);
+  --color-surface: #f3f4f6;
 }
 
-/* ─── Dark theme ───────────────────────────────────────────────────────────── */
+/* ── Dark theme ──────────────────────────────────────────── */
 [data-color-scheme="dark"] {
-  --color-bg: #0f0f0f;
-  --color-surface: #151030;
-  --color-surface-alt: #1f1f1f;
-  --color-text: #f3f3f3;
-  --color-text-muted: #aaa6c3;
-  --color-border: #2a2a40;
-  --color-brand: #915eff;
-  --color-brand-muted: rgba(145, 94, 255, 0.15);
+  --color-bg: #0a0a0a;
+  --color-text: #f0f0f0;
+  --color-text-muted: #808080;
+  --color-border: #222222;
+  --color-surface: #111111;
 }
 
-/* ─── Base styles ──────────────────────────────────────────────────────────── */
+/* ── Base reset ──────────────────────────────────────────── */
+html {
+  font-size: 80%;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--font-montserrat), sans-serif;
   scroll-behavior: smooth;
 }
 
 body {
+  font-family: var(--font-geist), sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
-  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* ─── Layout utilities ─────────────────────────────────────────────────────── */
-@layer components {
-  .paddingX {
-    @apply sm:px-16 px-6;
-  }
-  .paddingY {
-    @apply sm:py-16 py-6;
-  }
-  .padding {
-    @apply sm:px-16 px-6 sm:py-16 py-10;
-  }
-  .sectionHeadText {
-    @apply text-foreground font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px];
-  }
-  .sectionSubText {
-    @apply sm:text-[18px] text-[14px] text-muted uppercase tracking-wider;
+/* ── Cursor blink animation ──────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink {
+    animation: none;
   }
 }
 
-/* ─── Gradient utilities ───────────────────────────────────────────────────── */
-.violet-gradient {
-  background: linear-gradient(-90deg, var(--color-brand) 0%, transparent 100%);
+/* ── Card spotlight glow ─────────────────────────────────── */
+.spotlight-card {
+  position: relative;
 }
-
-.green-pink-gradient {
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
 }
-
-.orange-text-gradient {
-  background: linear-gradient(to top, #f12711, #f5af19);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.green-text-gradient {
-  background: linear-gradient(to top, #11998e, #38ef7d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.blue-text-gradient {
-  background: linear-gradient(to top, #2f80ed, #56ccf2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.pink-text-gradient {
-  background: linear-gradient(to top, #ec008c, #fc6767);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.spotlight-card:hover::before {
+  opacity: 1;
 }
