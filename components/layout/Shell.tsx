@@ -31,12 +31,12 @@ export function Shell({ children }: ShellProps) {
       </div>
 
       {/* Bottom-right / right-edge: section nav */}
-      <div className="fixed bottom-6 right-6 z-10 md:bottom-6 md:right-6">
+      <div className="fixed bottom-6 right-6 z-10">
         <CornerNav />
       </div>
 
       {/* Main content */}
-      <main className="max-w-3xl mx-auto px-6 md:px-0 py-32 pl-6 pr-8 md:pr-0">
+      <main className="max-w-3xl mx-auto pl-6 pr-8 md:p-0 py-32">
         {children}
       </main>
     </div>
