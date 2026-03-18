@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const ROUTES = [
   { href: "/hear", label: "hear" },
@@ -7,17 +10,52 @@ const ROUTES = [
 ] as const;
 
 export function CornerNav() {
+  const pathname = usePathname();
+
   return (
-    <nav aria-label="Section navigation" className="flex flex-col items-end gap-1">
-      {ROUTES.map(({ href, label }) => (
-        <Link
-          key={href}
-          href={href}
-          className="font-mono text-[11px] uppercase tracking-widest text-muted hover:text-foreground transition-colors"
-        >
-          {label}
-        </Link>
-      ))}
+    <nav aria-label="Section navigation">
+      {/* Desktop: vertical column at bottom-right */}
+      <div className="hidden md:flex flex-col items-end gap-1">
+        {ROUTES.map(({ href, label }) => {
+          const isActive = pathname === href;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={`font-mono text-[11px] uppercase tracking-widest transition-colors ${
+                isActive
+                  ? "text-foreground underline underline-offset-4"
+                  : "text-muted hover:text-foreground"
+              }`}
+            >
+              {label}
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Mobile: rotated strip on right edge, bottom-aligned */}
+      <div
+        className="flex md:hidden fixed right-0 bottom-6 flex-row gap-3 pr-1 z-10"
+        style={{ writingMode: "vertical-rl" }}
+      >
+        {ROUTES.map(({ href, label }) => {
+          const isActive = pathname === href;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={`font-mono text-[9px] uppercase tracking-widest transition-colors ${
+                isActive
+                  ? "text-foreground underline underline-offset-4"
+                  : "text-muted hover:text-foreground"
+              }`}
+            >
+              {label}
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }

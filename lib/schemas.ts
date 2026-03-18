@@ -15,6 +15,9 @@ export const MediaItemSchema = z.object({
   creator: z.string(),
   coverImage: z.string().startsWith("/"),
   note: z.string().nullable(),
+  rating: z.number().min(1).max(5).nullable().optional(),
+  publishedYear: z.number().nullable().optional(),
+  readDate: z.string().nullable().optional(),
 });
 
 export const MediaItemArraySchema = MediaItemSchema.array().refine(

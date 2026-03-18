@@ -1,9 +1,22 @@
 [
   {
-    "id": "placeholder",
-    "title": "Placeholder",
-    "creator": "Author",
+    "id": "tomorrow-and-tomorrow",
+    "title": "Tomorrow, and Tomorrow, and Tomorrow",
+    "creator": "Gabrielle Zevin",
     "coverImage": "/images/placeholder.jpg",
-    "note": null
+    "note": "In this exhilarating novel, two friends—often in love, but never lovers—come together as creative partners in the world of video game design, where success brings them fame, joy, tragedy, and ultimately, a deeper meaning of their lives.",
+    "publishedYear": 2022,
+    "readDate": "January 2026",
+    "rating": 4
+  },
+  {
+    "id": "the-likeness",
+    "title": "The Likeness (Dublin Murder Squad, #2)",
+    "creator": "Tana French",
+    "coverImage": "/images/placeholder.jpg",
+    "note": "Still traumatised by her brush with a psychopath, Detective Cassie Maddox transfers out of the Murder squad and starts a relationship with fellow detective Sam O'Neill.",
+    "publishedYear": 2008,
+    "readDate": "August 2025",
+    "rating": 4
   }
 ]
