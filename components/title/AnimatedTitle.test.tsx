@@ -38,7 +38,9 @@ describe("AnimatedTitle", () => {
     const { container } = render(
       <AnimatedTitle target="Marco Goedert" disabled />
     );
-    const textSpan = container.querySelectorAll("span[aria-hidden='true']")[0];
-    expect(textSpan.textContent).toBe("Marco Goedert");
+    const link = container.querySelector("a");
+    const tailSpan = container.querySelectorAll("span[aria-hidden='true']")[0];
+    expect(link?.textContent).toBe("Marco");
+    expect(tailSpan.textContent).toBe(" Goedert");
   });
 });

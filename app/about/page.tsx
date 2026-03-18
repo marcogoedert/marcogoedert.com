@@ -1,31 +1,27 @@
 import { AnimatedTitle } from "@/components/title/AnimatedTitle";
 import { AnimatedSection } from "@/components/layout/AnimatedSection";
 import { WorkExperienceList } from "@/components/sections/WorkExperienceList";
-import { SocialLinks } from "@/components/sections/SocialLinks";
 import { getExperiences } from "@/lib/content";
 
 export default function AboutPage() {
   const experiences = getExperiences();
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col items-center gap-12 text-center w-full">
       <AnimatedSection index={0}>
         <AnimatedTitle target="Marco's work and projects." />
       </AnimatedSection>
 
       <AnimatedSection index={1}>
         <p className="text-muted leading-relaxed max-w-prose">
-          Software engineer focused on building fast, reliable web products.
-          Passionate about clean architecture and great developer experience.
-          Currently at TELUS Digital.
+          Software engineer with experience designing, building, and evolving
+          production systems across frontend, backend, and infrastructure layers.
+          Currently at TELUS Digital, building the AQM platform with React,
+          Next.js, and TypeScript.
         </p>
       </AnimatedSection>
 
       <AnimatedSection index={2}>
-        <SocialLinks />
-      </AnimatedSection>
-
-      <AnimatedSection index={3}>
         <WorkExperienceList experiences={experiences} />
       </AnimatedSection>
     </div>
