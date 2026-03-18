@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Shell } from "@/components/layout/Shell";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -22,7 +24,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-// Reads color-scheme cookie before React hydrates to prevent FOUC.
 const fouc = `(function(){
   var c=document.cookie.match(/(?:^|;\\s*)color-scheme=([^;]+)/);
   var s=c?c[1]:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
@@ -45,9 +46,11 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: fouc }} />
       </head>
       <body
-        className={`${fraunces.variable} ${geist.variable} ${geistMono.variable}`}
+        className={`${fraunces.variable} ${geist.variable} ${geistMono.variable} bg-background text-foreground`}
       >
-        {children}
+        <Shell>
+          <PageTransition>{children}</PageTransition>
+        </Shell>
       </body>
     </html>
   );
