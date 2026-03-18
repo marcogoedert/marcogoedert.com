@@ -1,16 +1,28 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 
-const montserrat = Montserrat({
+const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-montserrat",
+  variable: "--font-fraunces",
+  weight: ["400"],
+  style: ["italic"],
 });
 
-// Runs before React hydrates to prevent flash of unstyled content.
-// Reads the color-scheme cookie and sets data-color-scheme on <html>
-// immediately, before any CSS transitions fire.
+const geist = Geist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist-mono",
+});
+
+// Reads color-scheme cookie before React hydrates to prevent FOUC.
 const fouc = `(function(){
   var c=document.cookie.match(/(?:^|;\\s*)color-scheme=([^;]+)/);
   var s=c?c[1]:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
@@ -30,9 +42,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-          <script dangerouslySetInnerHTML={{ __html: fouc }} />
+        <script dangerouslySetInnerHTML={{ __html: fouc }} />
       </head>
-      <body className={montserrat.variable}>{children}</body>
+      <body
+        className={`${fraunces.variable} ${geist.variable} ${geistMono.variable}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
