@@ -31,8 +31,16 @@ const fouc = `(function(){
 })();`;
 
 export const metadata: Metadata = {
-  title: "Marco Goedert",
-  description: "Marco Goedert is a software engineer from Brazil.",
+  title: {
+    default: "Marco Goedert",
+    template: "%s — Marco Goedert",
+  },
+  description: "Software engineer. Updated occasionally.",
+  openGraph: {
+    siteName: "Marco Goedert",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

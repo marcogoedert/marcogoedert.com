@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/layout/AnimatedSection";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with Marco Goedert.",
+};
 import { ContactRow } from "@/components/sections/ContactRow";
 import { CONTACT_LINKS } from "@/constants/links";
 

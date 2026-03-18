@@ -45,6 +45,7 @@ export function Card({ item, aspectRatio }: CardProps) {
           src={item.coverImage}
           alt={item.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover"
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).style.display = "none";

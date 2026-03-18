@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/layout/AnimatedSection";
 import { WorkExperienceList } from "@/components/sections/WorkExperienceList";
 import { getExperiences } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Software engineer with experience across frontend, backend, and infrastructure. Currently at TELUS Digital.",
+};
 
 export default function AboutPage() {
   const experiences = getExperiences();

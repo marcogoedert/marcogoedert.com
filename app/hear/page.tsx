@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/layout/AnimatedSection";
+
+export const metadata: Metadata = {
+  title: "Hears",
+  description: "Albums and songs Marco has been listening to lately.",
+};
 import { Card } from "@/components/ui/Card";
 import { getListens } from "@/lib/content";
 
