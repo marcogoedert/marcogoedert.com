@@ -16,7 +16,7 @@ export default function AboutPage() {
         </p>
       </AnimatedSection>
 
-      <AnimatedSection index={1}>
+      <AnimatedSection index={1} className="w-full">
         <WorkExperienceList experiences={experiences} />
       </AnimatedSection>
     </div>

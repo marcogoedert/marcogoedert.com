@@ -15,15 +15,15 @@ describe("useTitleMorph", () => {
     const { result } = renderHook(() => useTitleMorph("Marco Goedert"));
 
     // Nothing before initial delay
-    act(() => vi.advanceTimersByTime(299));
+    act(() => vi.advanceTimersByTime(149));
     expect(result.current).toBe("");
 
-    // First char after 300ms
+    // First char after 150ms
     act(() => vi.advanceTimersByTime(1));
     expect(result.current).toBe("M");
 
-    // Full title after all chars typed (13 chars × 60ms = 780ms after initial char)
-    act(() => vi.advanceTimersByTime(60 * 12));
+    // Full title after all chars typed (13 chars × 30ms = 390ms after initial char)
+    act(() => vi.advanceTimersByTime(30 * 12));
     expect(result.current).toBe("Marco Goedert");
   });
 
@@ -40,8 +40,8 @@ describe("useTitleMorph", () => {
     // Navigate: "Marco Goedert" → "Marco's work and projects."
     rerender({ target: "Marco's work and projects." });
 
-    // Deletes "Marco Goedert" (13) → "Marco" (5) = 8 deletions × 40ms
-    act(() => vi.advanceTimersByTime(40 * 8));
+    // Deletes "Marco Goedert" (13) → "Marco" (5) = 8 deletions × 20ms
+    act(() => vi.advanceTimersByTime(20 * 8));
     expect(result.current).toBe("Marco");
 
     // Types new suffix
@@ -59,7 +59,7 @@ describe("useTitleMorph", () => {
     expect(result.current).toBe("Marco Goedert");
 
     rerender({ target: "Marco's work and projects." });
-    act(() => vi.advanceTimersByTime(40 * 4)); // partially deleted
+    act(() => vi.advanceTimersByTime(20 * 4)); // partially deleted
 
     // Interrupt with a new target
     rerender({ target: "Marco's recent watches." });

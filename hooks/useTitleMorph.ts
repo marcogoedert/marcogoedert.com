@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 const PIVOT = "Marco";
-const DELETE_MS = 40;
-const TYPE_MS = 60;
-const INITIAL_DELAY_MS = 300;
+const DELETE_MS = 20;
+const TYPE_MS = 30;
+const INITIAL_DELAY_MS = 150;
 
 interface Options {
   disabled?: boolean;

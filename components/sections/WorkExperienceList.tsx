@@ -14,23 +14,23 @@ interface WorkExperienceListProps {
 
 export function WorkExperienceList({ experiences }: WorkExperienceListProps) {
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col text-left w-full">
       {experiences.map((exp, i) => (
         <li
           key={`${exp.company}-${exp.startDate}`}
-          className={`flex justify-between items-baseline py-4 ${
+          className={`py-4 ${
             i < experiences.length - 1 ? "border-b border-border" : ""
           }`}
         >
-          <div>
+          <div className="flex justify-between items-baseline">
             <span className="text-foreground font-medium">{exp.company}</span>
-            <span className="font-mono text-xs text-muted ml-2 uppercase tracking-wider">
-              {exp.role}
+            <span className="font-mono text-xs text-muted">
+              {formatDate(exp.startDate)} –{" "}
+              {exp.endDate ? formatDate(exp.endDate) : "Present"}
             </span>
           </div>
-          <span className="font-mono text-xs text-muted">
-            {formatDate(exp.startDate)} –{" "}
-            {exp.endDate ? formatDate(exp.endDate) : "Present"}
+          <span className="font-mono text-xs text-muted uppercase tracking-wider">
+            {exp.role}
           </span>
         </li>
       ))}
