@@ -75,7 +75,7 @@ export function Card({ item, aspectRatio }: CardProps) {
       onMouseMove={handleMouseMove}
     >
       {/* Cover image */}
-      <div className="relative w-full overflow-hidden" style={{ paddingTop }}>
+      <div className="relative w-full overflow-hidden bg-surface" style={{ paddingTop }}>
         <Image
           src={item.coverImage}
           alt={item.title}
