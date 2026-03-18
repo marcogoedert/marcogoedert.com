@@ -25,10 +25,15 @@ function applyScheme(scheme: ColorScheme) {
 }
 
 export function useColorScheme() {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
-    if (typeof window === "undefined") return "light";
-    return readCookie() ?? getSystemPreference();
-  });
+  // Always start with "light" to match server render, then sync in useEffect
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+
+  useEffect(() => {
+    const actual = readCookie() ?? getSystemPreference();
+    setColorScheme(actual);
+    applyScheme(actual);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     applyScheme(colorScheme);
