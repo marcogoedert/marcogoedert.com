@@ -11,10 +11,10 @@ export function Shell({ children }: ShellProps) {
   const year = new Date().getFullYear();
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-dvh relative">
       {/* Top-left: year */}
       <div className="fixed top-6 left-6 z-10">
-        <span className="font-mono text-[11px] text-muted">
+        <span className="font-mono text-[11px] text-foreground/50">
           {year}
         </span>
       </div>
@@ -26,7 +26,7 @@ export function Shell({ children }: ShellProps) {
 
       {/* Bottom-left: editorial note (desktop only) */}
       <div className="hidden md:block fixed bottom-6 left-6 z-10">
-        <span className="font-mono text-[11px] text-muted">
+        <span className="font-mono text-[11px] text-foreground/50">
           {EDITORIAL_NOTE}
         </span>
       </div>
@@ -37,7 +37,7 @@ export function Shell({ children }: ShellProps) {
       </div>
 
       {/* Main content */}
-      <main className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-4 md:px-6">
+      <main className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6 sm:px-8">
         {/* Title: full page width */}
         <SiteTitle />
         {/* Content: constrained */}

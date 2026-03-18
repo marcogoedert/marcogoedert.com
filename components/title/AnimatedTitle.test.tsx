@@ -28,8 +28,8 @@ describe("AnimatedTitle", () => {
   it("renders a cursor span with aria-hidden", () => {
     const { container } = render(<AnimatedTitle target="Marco Goedert" />);
     const spans = container.querySelectorAll("span[aria-hidden='true']");
-    // One span for the visible text, one for the cursor
-    expect(spans.length).toBe(2);
+    // Three spans: link text, tail text, cursor
+    expect(spans.length).toBe(3);
     // Last span is the cursor
     expect(spans[spans.length - 1].textContent).toBe("_");
   });
@@ -39,7 +39,7 @@ describe("AnimatedTitle", () => {
       <AnimatedTitle target="Marco Goedert" disabled />
     );
     const link = container.querySelector("a");
-    const tailSpan = container.querySelectorAll("span[aria-hidden='true']")[0];
+    const tailSpan = container.querySelectorAll("span[aria-hidden='true']")[1];
     expect(link?.textContent).toBe("Marco");
     expect(tailSpan.textContent).toBe(" Goedert");
   });

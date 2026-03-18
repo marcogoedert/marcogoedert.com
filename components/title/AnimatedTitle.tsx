@@ -21,8 +21,8 @@ export function AnimatedTitle({ target, disabled }: AnimatedTitleProps) {
       aria-label={target}
       className="font-fraunces italic text-foreground leading-none text-3xl md:text-5xl min-h-[2rem] md:min-h-[3rem]"
     >
-      <Link href="/" className="hover:underline underline-offset-4" aria-hidden="true">
-        {linkPart}
+      <Link href="/" aria-label="Home" className="hover:underline underline-offset-4">
+        <span aria-hidden="true">{linkPart}</span>
       </Link>
       <span aria-hidden="true">{tailPart}</span>
       <span aria-hidden="true" className="cursor-blink">

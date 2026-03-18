@@ -23,10 +23,10 @@ export function TopNav() {
           <Link
             key={href}
             href={href}
-            className={`font-mono text-[11px] uppercase tracking-widest transition-colors ${
+            className={`font-mono text-[11px] uppercase tracking-widest transition-colors py-1 ${
               isActive
                 ? "text-foreground underline underline-offset-2"
-                : "text-muted hover:text-foreground"
+                : "text-foreground/50 hover:text-foreground"
             }`}
           >
             {label}

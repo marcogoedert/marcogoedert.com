@@ -22,10 +22,10 @@ export function CornerNav() {
             <Link
               key={href}
               href={href}
-              className={`font-mono text-[11px] uppercase tracking-widest transition-colors ${
+              className={`font-mono text-[11px] uppercase tracking-widest transition-colors py-1 ${
                 isActive
                   ? "text-foreground underline underline-offset-2"
-                  : "text-muted hover:text-foreground"
+                  : "text-foreground/50 hover:text-foreground"
               }`}
             >
               {label}
@@ -36,7 +36,7 @@ export function CornerNav() {
 
       {/* Mobile: rotated strip on right edge, bottom-aligned */}
       <div
-        className="flex md:hidden fixed right-0 bottom-6 flex-row gap-3 pr-1 z-10"
+        className="flex md:hidden fixed right-0 bottom-6 flex-row gap-3 pr-2 z-10"
         style={{ writingMode: "vertical-rl" }}
       >
         {ROUTES.map(({ href, label }) => {
@@ -45,10 +45,10 @@ export function CornerNav() {
             <Link
               key={href}
               href={href}
-              className={`font-mono text-[9px] uppercase tracking-widest transition-colors ${
+              className={`font-mono text-[9px] uppercase tracking-widest transition-colors py-1 drop-shadow-md ${
                 isActive
                   ? "text-foreground underline underline-offset-2"
-                  : "text-muted hover:text-foreground"
+                  : "text-foreground/50 hover:text-foreground"
               }`}
             >
               {label}
