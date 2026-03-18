@@ -25,7 +25,7 @@ export function TopNav() {
             href={href}
             className={`font-mono text-[11px] uppercase tracking-widest transition-colors ${
               isActive
-                ? "text-foreground underline underline-offset-4"
+                ? "text-foreground underline underline-offset-2"
                 : "text-muted hover:text-foreground"
             }`}
           >
