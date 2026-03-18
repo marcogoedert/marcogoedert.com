@@ -48,18 +48,15 @@ describe("Card", () => {
     expect(card.style.getPropertyValue("--mouse-y")).toBe("25%");
   });
 
-  it("sets --img-scale to 1.05 on mouseenter", () => {
+  it("updates --mouse-x and --mouse-y on mouseenter", () => {
     const { container } = render(<Card item={ITEM} aspectRatio="1/1" />);
     const card = container.firstChild as HTMLElement;
-    fireEvent.mouseEnter(card);
-    expect(card.style.getPropertyValue("--img-scale")).toBe("1.05");
-  });
-
-  it("resets --img-scale to 1 on mouseleave", () => {
-    const { container } = render(<Card item={ITEM} aspectRatio="1/1" />);
-    const card = container.firstChild as HTMLElement;
-    fireEvent.mouseEnter(card);
-    fireEvent.mouseLeave(card);
-    expect(card.style.getPropertyValue("--img-scale")).toBe("1");
+    card.getBoundingClientRect = () => ({
+      left: 0, top: 0, width: 200, height: 200,
+      right: 200, bottom: 200, x: 0, y: 0, toJSON: () => {},
+    });
+    fireEvent.mouseEnter(card, { clientX: 50, clientY: 100 });
+    expect(card.style.getPropertyValue("--mouse-x")).toBe("25%");
+    expect(card.style.getPropertyValue("--mouse-y")).toBe("50%");
   });
 });
