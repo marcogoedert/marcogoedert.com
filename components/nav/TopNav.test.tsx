@@ -20,6 +20,12 @@ describe("TopNav", () => {
     expect(link.href).toContain("/about");
   });
 
+  it("Contact link points to /contact", () => {
+    render(<TopNav />);
+    const link = screen.getByRole("link", { name: /contact/i }) as HTMLAnchorElement;
+    expect(link.href).toContain("/contact");
+  });
+
   it("renders the theme toggle button", () => {
     render(<TopNav />);
     const toggle = screen.getByRole("button", { name: /switch to/i });
