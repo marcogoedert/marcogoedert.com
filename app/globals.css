@@ -50,3 +50,25 @@ body {
     animation: none;
   }
 }
+
+/* ── Card spotlight glow ─────────────────────────────────── */
+.spotlight-card {
+  position: relative;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
