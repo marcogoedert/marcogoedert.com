@@ -36,7 +36,7 @@ export function Shell({ children }: ShellProps) {
       </div>
 
       {/* Main content */}
-      <main className="max-w-3xl mx-auto pl-6 pr-8 md:p-0 py-32">
+      <main className="max-w-3xl mx-auto pl-6 pr-8 md:px-0 pt-24 md:pt-32 pb-16">
         {children}
       </main>
     </div>

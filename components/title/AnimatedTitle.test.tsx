@@ -1,5 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+
+vi.mock("next/link", () => ({
+  default: ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => (
+    <a href={href} className={className}>{children}</a>
+  ),
+}));
+
 import { AnimatedTitle } from "./AnimatedTitle";
 
 describe("AnimatedTitle", () => {
