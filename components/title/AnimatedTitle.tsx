@@ -14,7 +14,7 @@ export function AnimatedTitle({ target, disabled }: AnimatedTitleProps) {
     <h1
       aria-live="polite"
       aria-label={target}
-      className="font-fraunces italic text-foreground leading-tight"
+      className="font-fraunces italic text-foreground leading-none text-[clamp(3rem,8vw,6rem)]"
     >
       <span aria-hidden="true">{displayed}</span>
       <span aria-hidden="true" className="cursor-blink">

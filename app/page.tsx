@@ -3,7 +3,7 @@ import { AnimatedSection } from "@/components/layout/AnimatedSection";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6 min-h-[calc(100vh-16rem)] justify-center">
       <AnimatedSection index={0}>
         <AnimatedTitle target="Marco Goedert" />
       </AnimatedSection>
