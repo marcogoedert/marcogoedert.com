@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useCallback } from "react";
 import type { IMediaItem } from "@/lib/schemas";
 
@@ -27,7 +28,7 @@ export function BookCard({ item }: BookCardProps) {
     card.style.setProperty("--mouse-y", (((e.clientY - rect.top) / rect.height) * 100).toFixed(0) + "%");
   }, []);
 
-  return (
+  const inner = (
     <div
       ref={cardRef}
       className="flex flex-col sm:flex-row border border-border overflow-hidden bg-surface spotlight-card cursor-default"
@@ -81,4 +82,10 @@ export function BookCard({ item }: BookCardProps) {
       </div>
     </div>
   );
+
+  return item.url ? (
+    <Link href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+      {inner}
+    </Link>
+  ) : inner;
 }

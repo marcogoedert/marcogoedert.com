@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useCallback } from "react";
 import type { IMediaItem } from "@/lib/schemas";
 
@@ -30,7 +31,7 @@ export function Card({ item, aspectRatio }: CardProps) {
 
   const paddingTop = aspectRatio === "1/1" ? "100%" : "150%";
 
-  return (
+  const inner = (
     <div
       ref={cardRef}
       className="relative rounded-sm overflow-hidden bg-surface cursor-default spotlight-card"
@@ -65,4 +66,10 @@ export function Card({ item, aspectRatio }: CardProps) {
       </div>
     </div>
   );
+
+  return item.url ? (
+    <Link href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+      {inner}
+    </Link>
+  ) : inner;
 }

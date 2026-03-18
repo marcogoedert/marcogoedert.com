@@ -3,28 +3,32 @@
     "id": "severance-s2",
     "title": "Severance",
     "creator": "Ben Stiller",
-    "coverImage": "/images/placeholder.jpg",
-    "note": "Season 2 picks up right where it left off. The Lumon mystery deepens and the performances are as unsettling as ever."
+    "coverImage": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+    "url": "https://www.imdb.com/title/tt11280740/",
+    "note": "The most accurate depiction of corporate tech culture ever made. Every platform team has a Lumon somewhere in the org chart."
   },
   {
     "id": "the-bear-s3",
     "title": "The Bear",
     "creator": "Christopher Storer",
-    "coverImage": "/images/placeholder.jpg",
-    "note": "Chaotic, intense, and deeply human. Every episode feels like a controlled explosion in a kitchen."
+    "coverImage": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+    "url": "https://www.imdb.com/title/tt14452776/",
+    "note": "About what it costs to build something great. The kitchen scenes feel like a war room the day before a release — chaotic, high-stakes, deeply human."
   },
   {
     "id": "dune-part-two",
     "title": "Dune: Part Two",
     "creator": "Denis Villeneuve",
-    "coverImage": "/images/placeholder.jpg",
-    "note": "A stunning technical achievement. Villeneuve turns the unfilmable into something genuinely awe-inspiring."
+    "coverImage": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+    "url": "https://www.imdb.com/title/tt15239678/",
+    "note": "Villeneuve understands that scale only matters if you care about the people inside it. A rare blockbuster that trusts its audience."
   },
   {
     "id": "blue-eye-samurai",
     "title": "Blue Eye Samurai",
     "creator": "Michael Green",
-    "coverImage": "/images/placeholder.jpg",
-    "note": "Gorgeous animation and a brutally compelling revenge story. One of the best animated series in years."
+    "coverImage": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+    "url": "https://www.imdb.com/title/tt13309976/",
+    "note": "A meditation on mastery and the price of obsession. The animation is jaw-dropping, but the writing is what keeps you up past midnight."
   }
 ]

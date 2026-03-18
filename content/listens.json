@@ -3,28 +3,32 @@
     "id": "charli-xcx-brat",
     "title": "BRAT",
     "creator": "Charli XCX",
-    "coverImage": "/images/placeholder.jpg",
-    "note": "Loud, confident, and unapologetically itself. Has been on repeat since release."
+    "coverImage": "https://i.scdn.co/image/ab67616d0000b273e8b066f70c206551210d902b",
+    "url": "https://open.spotify.com/album/2lIZef4lzdvZkiiCzvPKj7",
+    "note": "Pure momentum. I've shipped more code to this album than I'd like to admit."
   },
   {
     "id": "kendrick-gnx",
     "title": "GNX",
     "creator": "Kendrick Lamar",
-    "coverImage": "/images/placeholder.jpg",
-    "note": "Dense and layered. Each listen reveals something new."
+    "coverImage": "https://i.scdn.co/image/ab67616d0000b273e8b066f70c206551210d902b",
+    "url": "https://open.spotify.com/album/4zCFVOBWZBLMDsC1sONLQH",
+    "note": "Dense and layered — each listen reveals something new. The kind of record that rewards attention, which is rare."
   },
   {
     "id": "mk-ultra-magdalene",
     "title": "MAGDALENE",
     "creator": "FKA twigs",
-    "coverImage": "/images/placeholder.jpg",
-    "note": "A beautifully fractured record about grief and transformation. Hauntingly good."
+    "coverImage": "https://i.scdn.co/image/ab67616d0000b273e8b066f70c206551210d902b",
+    "url": "https://open.spotify.com/album/7MCdbT5hM4RrQiRh4Sffkh",
+    "note": "A beautifully fractured record about grief and transformation. Best listened to at 2am when you're deep in a hard problem."
   },
   {
     "id": "bicep-isles",
     "title": "Isles",
     "creator": "Bicep",
-    "coverImage": "/images/placeholder.jpg",
-    "note": "Perfect late-night coding music. Emotional electronic that never gets old."
+    "coverImage": "https://i.scdn.co/image/ab67616d0000b273e8b066f70c206551210d902b",
+    "url": "https://open.spotify.com/album/1HuFkiMFKFMAlonifPLgUo",
+    "note": "My default focus playlist. Emotional electronic that never gets in the way — just pulls you deeper into the work."
   }
 ]

@@ -1,1 +1,1 @@
-export const EDITORIAL_NOTE = "Building things on the internet since 2015.";
+export const EDITORIAL_NOTE = "Platform engineer at TELUS Digital. Been shipping software professionally since 2019.";
