@@ -1,3 +1,5 @@
+"use client";
+
 interface ContactRowProps {
   label: string;
   value: string;

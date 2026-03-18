@@ -3,7 +3,7 @@ import { SOCIAL_LINKS } from "@/constants/links";
 export function SocialLinks() {
   return (
     <div className="flex gap-6">
-      {Object.values(SOCIAL_LINKS).map(({ label, handle, url }) => (
+      {Object.values(SOCIAL_LINKS).map(({ label, url }) => (
         <a
           key={label}
           href={url}

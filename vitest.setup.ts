@@ -12,7 +12,8 @@ globalThis.requestAnimationFrame = (cb: FrameRequestCallback): number => {
   return id;
 };
 
-globalThis.cancelAnimationFrame = (id: number): void => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+globalThis.cancelAnimationFrame = (_id: number): void => {
   // no-op
 };
 
