@@ -37,9 +37,13 @@ export function Shell({ children }: ShellProps) {
       </div>
 
       {/* Main content */}
-      <main className="max-w-3xl mx-auto px-6 md:px-0 pt-24 md:pt-32 pb-16 flex flex-col items-center gap-12">
+      <main className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-4 md:px-6">
+        {/* Title: full page width */}
         <SiteTitle />
-        {children}
+        {/* Content: constrained */}
+        <div className="flex flex-col items-center w-full max-w-4xl mx-auto gap-12">
+          {children}
+        </div>
       </main>
     </div>
   );

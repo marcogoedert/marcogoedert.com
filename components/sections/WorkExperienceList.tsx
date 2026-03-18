@@ -18,19 +18,17 @@ export function WorkExperienceList({ experiences }: WorkExperienceListProps) {
       {experiences.map((exp, i) => (
         <li
           key={`${exp.company}-${exp.startDate}`}
-          className={`py-4 ${
-            i < experiences.length - 1 ? "border-b border-border" : ""
+          className={`flex justify-between items-baseline pb-4 ${
+            i < experiences.length - 1 ? "border-b border-border pt-4" : "pt-4"
           }`}
         >
-          <div className="flex justify-between items-baseline">
-            <span className="text-foreground font-medium">{exp.company}</span>
-            <span className="font-mono text-xs text-muted">
-              {formatDate(exp.startDate)} –{" "}
-              {exp.endDate ? formatDate(exp.endDate) : "Present"}
-            </span>
+          <div>
+            <span className="block font-medium text-foreground">{exp.company}</span>
+            <span className="block text-sm text-muted">{exp.role}</span>
           </div>
-          <span className="font-mono text-xs text-muted uppercase tracking-wider">
-            {exp.role}
+          <span className="text-sm text-muted tabular-nums shrink-0 ml-4">
+            {formatDate(exp.startDate)} –{" "}
+            {exp.endDate ? formatDate(exp.endDate) : "Present"}
           </span>
         </li>
       ))}
