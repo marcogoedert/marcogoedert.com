@@ -1,9 +1,30 @@
 [
   {
-    "id": "placeholder",
-    "title": "Placeholder",
-    "creator": "Director",
+    "id": "severance-s2",
+    "title": "Severance",
+    "creator": "Ben Stiller",
     "coverImage": "/images/placeholder.jpg",
-    "note": null
+    "note": "Season 2 picks up right where it left off. The Lumon mystery deepens and the performances are as unsettling as ever."
+  },
+  {
+    "id": "the-bear-s3",
+    "title": "The Bear",
+    "creator": "Christopher Storer",
+    "coverImage": "/images/placeholder.jpg",
+    "note": "Chaotic, intense, and deeply human. Every episode feels like a controlled explosion in a kitchen."
+  },
+  {
+    "id": "dune-part-two",
+    "title": "Dune: Part Two",
+    "creator": "Denis Villeneuve",
+    "coverImage": "/images/placeholder.jpg",
+    "note": "A stunning technical achievement. Villeneuve turns the unfilmable into something genuinely awe-inspiring."
+  },
+  {
+    "id": "blue-eye-samurai",
+    "title": "Blue Eye Samurai",
+    "creator": "Michael Green",
+    "coverImage": "/images/placeholder.jpg",
+    "note": "Gorgeous animation and a brutally compelling revenge story. One of the best animated series in years."
   }
 ]

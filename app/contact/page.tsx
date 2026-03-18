@@ -1,20 +1,15 @@
-import { AnimatedTitle } from "@/components/title/AnimatedTitle";
 import { AnimatedSection } from "@/components/layout/AnimatedSection";
 import { ContactRow } from "@/components/sections/ContactRow";
 import { CONTACT_LINKS } from "@/constants/links";
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-12 w-full">
       <AnimatedSection index={0}>
-        <AnimatedTitle target="Marco's contact information." />
-      </AnimatedSection>
-
-      <AnimatedSection index={1}>
         <p className="font-mono text-sm text-muted">Feel free to reach out.</p>
       </AnimatedSection>
 
-      <AnimatedSection index={2}>
+      <AnimatedSection index={1}>
         <div className="flex flex-col">
           <ContactRow
             label={CONTACT_LINKS.email.label}

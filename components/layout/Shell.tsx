@@ -1,5 +1,6 @@
 import { TopNav } from "@/components/nav/TopNav";
 import { CornerNav } from "@/components/nav/CornerNav";
+import { SiteTitle } from "@/components/title/SiteTitle";
 import { EDITORIAL_NOTE } from "@/constants/copy";
 
 interface ShellProps {
@@ -36,7 +37,8 @@ export function Shell({ children }: ShellProps) {
       </div>
 
       {/* Main content */}
-      <main className="max-w-3xl mx-auto px-6 md:px-0 pt-24 md:pt-32 pb-16 flex flex-col items-center">
+      <main className="max-w-3xl mx-auto px-6 md:px-0 pt-24 md:pt-32 pb-16 flex flex-col items-center gap-12">
+        <SiteTitle />
         {children}
       </main>
     </div>

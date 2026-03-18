@@ -1,9 +1,30 @@
 [
   {
-    "id": "placeholder",
-    "title": "Placeholder",
-    "creator": "Artist",
+    "id": "charli-xcx-brat",
+    "title": "BRAT",
+    "creator": "Charli XCX",
     "coverImage": "/images/placeholder.jpg",
-    "note": null
+    "note": "Loud, confident, and unapologetically itself. Has been on repeat since release."
+  },
+  {
+    "id": "kendrick-gnx",
+    "title": "GNX",
+    "creator": "Kendrick Lamar",
+    "coverImage": "/images/placeholder.jpg",
+    "note": "Dense and layered. Each listen reveals something new."
+  },
+  {
+    "id": "mk-ultra-magdalene",
+    "title": "MAGDALENE",
+    "creator": "FKA twigs",
+    "coverImage": "/images/placeholder.jpg",
+    "note": "A beautifully fractured record about grief and transformation. Hauntingly good."
+  },
+  {
+    "id": "bicep-isles",
+    "title": "Isles",
+    "creator": "Bicep",
+    "coverImage": "/images/placeholder.jpg",
+    "note": "Perfect late-night coding music. Emotional electronic that never gets old."
   }
 ]
