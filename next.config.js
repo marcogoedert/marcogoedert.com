@@ -6,6 +6,7 @@ const nextConfig = {
       { hostname: "m.media-amazon.com" },       // Amazon/IMDB images
       { hostname: "i.scdn.co" },                // Spotify album art
       { hostname: "image.tmdb.org" },           // TMDB movie/TV posters
+      { hostname: "books.google.com" },         // Google Books covers
     ],
   },
 };

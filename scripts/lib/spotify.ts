@@ -17,7 +17,8 @@ interface SpotifyTrackResponse {
   id: string
   name: string
   artists: Array<{ name: string }>
-  album: { images: SpotifyImage[] }
+  duration_ms: number
+  album: { name: string; images: SpotifyImage[] }
 }
 
 export interface SpotifyAlbumData {
@@ -25,6 +26,15 @@ export interface SpotifyAlbumData {
   creator: string
   coverImage: string
   url: string
+  albumName?: string
+  duration?: string
+}
+
+export function formatDuration(ms: number): string {
+  const totalSeconds = Math.round(ms / 1000)
+  const minutes = Math.floor(totalSeconds / 60)
+  const seconds = totalSeconds % 60
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`
 }
 
 function selectCoverImage(images: SpotifyImage[], warn: (msg: string) => void): string {
@@ -60,6 +70,8 @@ export function parseSpotifyTrack(
     creator: track.artists[0]?.name ?? "",
     coverImage: selectCoverImage(track.album.images, warn),
     url: `https://open.spotify.com/track/${track.id}`,
+    albumName: track.album.name,
+    duration: formatDuration(track.duration_ms),
   }
 }
 

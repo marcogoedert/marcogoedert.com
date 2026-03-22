@@ -1,8 +1,22 @@
 // @vitest-environment node
 import { describe, it, expect } from "vitest"
-import { parseSpotifyAlbum, parseSpotifyTrack } from "../lib/spotify"
+import { parseSpotifyAlbum, parseSpotifyTrack, formatDuration } from "../lib/spotify"
 import fixture from "./fixtures/spotify-album.json"
 import trackFixture from "./fixtures/spotify-track.json"
+
+describe("formatDuration", () => {
+  it("formats whole minutes", () => {
+    expect(formatDuration(180000)).toBe("3:00")
+  })
+
+  it("pads seconds to 2 digits", () => {
+    expect(formatDuration(65000)).toBe("1:05")
+  })
+
+  it("formats a typical track length", () => {
+    expect(formatDuration(194000)).toBe("3:14")
+  })
+})
 
 describe("parseSpotifyAlbum", () => {
   it("extracts title from album name", () => {
@@ -79,10 +93,20 @@ describe("parseSpotifyTrack", () => {
     expect(result.coverImage).toBe("https://i.scdn.co/image/medium")
   })
 
+  it("extracts album name from track album", () => {
+    const result = parseSpotifyTrack(trackFixture)
+    expect(result.albumName).toBe("Meteora")
+  })
+
+  it("formats duration from duration_ms", () => {
+    const result = parseSpotifyTrack(trackFixture)
+    expect(result.duration).toBe("3:14")
+  })
+
   it("returns empty coverImage and warns when album images array is empty", () => {
     const logs: string[] = []
     const warn = (msg: string) => logs.push(msg)
-    const result = parseSpotifyTrack({ ...trackFixture, album: { images: [] } }, warn)
+    const result = parseSpotifyTrack({ ...trackFixture, album: { name: "Meteora", images: [] } }, warn)
     expect(result.coverImage).toBe("")
     expect(logs[0]).toMatch(/cover/i)
   })

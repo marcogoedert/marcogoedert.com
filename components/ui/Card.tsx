@@ -55,12 +55,25 @@ export function Card({ item, aspectRatio }: CardProps) {
 
       {/* Card body */}
       <div className="p-3">
-        <p className="text-foreground text-sm font-medium truncate">
-          {item.title}
-        </p>
-        <p className="font-mono text-xs text-muted uppercase tracking-wider truncate mt-1">
-          {item.creator}
-        </p>
+        {item.albumName ? (
+          <>
+            <div className="flex items-baseline justify-between gap-2">
+              <p className="text-foreground text-sm font-semibold truncate">{item.title}</p>
+              {item.duration && (
+                <p className="font-mono text-xs text-muted shrink-0">{item.duration}</p>
+              )}
+            </div>
+            <p className="text-foreground text-xs text-center truncate mt-1">{item.creator}</p>
+            {item.albumName !== item.title && (
+              <p className="text-muted text-xs text-center truncate">{item.albumName}</p>
+            )}
+          </>
+        ) : (
+          <>
+            <p className="text-foreground text-sm font-medium truncate">{item.title}</p>
+            <p className="font-mono text-xs text-muted uppercase tracking-wider truncate mt-1">{item.creator}</p>
+          </>
+        )}
         {item.note && (
           <p className="text-muted text-xs mt-2 line-clamp-2">{item.note}</p>
         )}

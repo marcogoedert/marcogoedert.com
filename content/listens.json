@@ -1,11 +1,33 @@
 [
   {
+    "id": "machine-girl-come-on-baby-scrape-my-data-dj-smokey-remix",
+    "title": "Come On Baby, Scrape My Data (Dj Smokey Remix)",
+    "creator": "Machine Girl",
+    "coverImage": "https://i.scdn.co/image/ab67616d0000b2732f7d20b736ac0d73109cb9ec",
+    "url": "https://open.spotify.com/track/1SQdFojnDy2jIUiMmM054J",
+    "note": null,
+    "albumName": "Come On Baby, Scrape My Data (Dj Smokey Remix)",
+    "duration": "3:31"
+  },
+  {
+    "id": "machine-girl-uzumaki",
+    "title": "うずまき",
+    "creator": "Machine Girl",
+    "coverImage": "https://i.scdn.co/image/ab67616d0000b27305ee7f9007de311dcb1b6f43",
+    "url": "https://open.spotify.com/track/38BJYKB0qHJsNi2OyI7kxW",
+    "note": null,
+    "albumName": "…Because I'm Young Arrogant and Hate Everything You Stand For",
+    "duration": "3:53"
+  },
+  {
     "id": "sepultura-roots-bloody-roots",
     "title": "Roots Bloody Roots",
     "creator": "Sepultura",
     "coverImage": "https://i.scdn.co/image/ab67616d0000b2730bd5e7cce9765c2ef519424e",
     "url": "https://open.spotify.com/track/6ursmCnbc9oDRGa2yHKkoZ",
     "note": null,
-    "rating": 5
+    "rating": 5,
+    "albumName": "Roots",
+    "duration": "3:32"
   }
 ]

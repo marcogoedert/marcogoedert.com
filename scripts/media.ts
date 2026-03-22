@@ -49,7 +49,7 @@ function isUrl(str: string): boolean {
 }
 
 async function addCommand(urlOrQuery?: string): Promise<void> {
-  type FetchedData = { title: string; creator: string; coverImage: string; url: string | null; publishedYear?: number }
+  type FetchedData = { title: string; creator: string; coverImage: string; url: string | null; publishedYear?: number; albumName?: string; duration?: string }
   let contentType: ContentFile
   let fetched: FetchedData
 
@@ -140,6 +140,8 @@ async function addCommand(urlOrQuery?: string): Promise<void> {
     ...(rating !== undefined && { rating }),
     ...(contentType === "reads" && fetched.publishedYear !== undefined && { publishedYear: fetched.publishedYear }),
     ...(contentType === "reads" && readDate !== undefined && { readDate }),
+    ...(contentType === "listens" && fetched.albumName !== undefined && { albumName: fetched.albumName }),
+    ...(contentType === "listens" && fetched.duration !== undefined && { duration: fetched.duration }),
   }
 
   const validation = MediaItemSchema.safeParse(entry)

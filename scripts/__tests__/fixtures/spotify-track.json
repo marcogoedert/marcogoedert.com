@@ -5,7 +5,9 @@
     { "name": "Linkin Park" },
     { "name": "Other Artist" }
   ],
+  "duration_ms": 194000,
   "album": {
+    "name": "Meteora",
     "images": [
       { "url": "https://i.scdn.co/image/small", "width": 300, "height": 300 },
       { "url": "https://i.scdn.co/image/medium", "width": 640, "height": 640 },
