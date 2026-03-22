@@ -79,8 +79,11 @@ export async function fetchTmdbTitle(
   originalUrl: string,
   apiKey: string
 ): Promise<TmdbTitleData> {
+  const authHeaders = { Authorization: `Bearer ${apiKey}` }
+
   const findRes = await fetch(
-    `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id&api_key=${apiKey}`
+    `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id`,
+    { headers: authHeaders }
   )
   if (!findRes.ok) throw new Error(`TMDB find failed: ${findRes.status} ${findRes.url}`)
   const findData = (await findRes.json()) as { movie_results: MovieResult[]; tv_results: TvResult[] }
@@ -88,7 +91,8 @@ export async function fetchTmdbTitle(
   if (findData.movie_results.length > 0) {
     const movie = findData.movie_results[0]
     const creditsRes = await fetch(
-      `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/movie/${movie.id}/credits`,
+      { headers: authHeaders }
     )
     if (!creditsRes.ok) throw new Error(`TMDB credits failed: ${creditsRes.status} ${creditsRes.url}`)
     const credits = (await creditsRes.json()) as CreditsResponse
@@ -98,7 +102,8 @@ export async function fetchTmdbTitle(
   if (findData.tv_results.length > 0) {
     const tv = findData.tv_results[0]
     const detailsRes = await fetch(
-      `https://api.themoviedb.org/3/tv/${tv.id}?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/tv/${tv.id}`,
+      { headers: authHeaders }
     )
     if (!detailsRes.ok) throw new Error(`TMDB TV details failed: ${detailsRes.status} ${detailsRes.url}`)
     const details = (await detailsRes.json()) as TvDetailsResponse
