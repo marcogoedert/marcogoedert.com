@@ -35,6 +35,11 @@ describe("detectUrl — Spotify", () => {
     const result = detectUrl("https://spotify.link/abc123")
     expect(result).toEqual({ ok: false, error: UNSUPPORTED })
   })
+
+  it("rejects /album/ URL with no album ID", () => {
+    const result = detectUrl("https://open.spotify.com/album/")
+    expect(result).toEqual({ ok: false, error: UNSUPPORTED })
+  })
 })
 
 describe("detectUrl — Goodreads", () => {
@@ -65,6 +70,16 @@ describe("detectUrl — Goodreads", () => {
       error: "Could not extract title from URL. Use a full Goodreads book URL.",
     })
   })
+
+  it("detects bare goodreads.com domain (no www)", () => {
+    const result = detectUrl("https://goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow")
+    expect(result).toEqual({
+      ok: true,
+      type: "reads",
+      id: "58784475-tomorrow-and-tomorrow-and-tomorrow",
+      originalUrl: "https://goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow",
+    })
+  })
 })
 
 describe("detectUrl — IMDB", () => {
@@ -75,6 +90,26 @@ describe("detectUrl — IMDB", () => {
       type: "watches",
       id: "tt11280740",
       originalUrl: "https://www.imdb.com/title/tt11280740/",
+    })
+  })
+
+  it("detects IMDB title URL without trailing slash", () => {
+    const result = detectUrl("https://www.imdb.com/title/tt11280740")
+    expect(result).toEqual({
+      ok: true,
+      type: "watches",
+      id: "tt11280740",
+      originalUrl: "https://www.imdb.com/title/tt11280740",
+    })
+  })
+
+  it("detects bare imdb.com domain (no www)", () => {
+    const result = detectUrl("https://imdb.com/title/tt11280740/")
+    expect(result).toEqual({
+      ok: true,
+      type: "watches",
+      id: "tt11280740",
+      originalUrl: "https://imdb.com/title/tt11280740/",
     })
   })
 })
