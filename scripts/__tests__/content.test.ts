@@ -11,6 +11,7 @@ import {
   removeItem,
   findDuplicateId,
   writeItems,
+  findMatchingEntries,
 } from "../lib/content"
 import type { IMediaItem } from "../../lib/schemas"
 
@@ -132,5 +133,40 @@ describe("writeItems — atomic write", () => {
     const raw = fs.readFileSync(path.join(tmpDir, "content", "reads.json"), "utf-8")
     expect(JSON.parse(raw)).toEqual([ITEM_RATED])
     // Windows copy fallback (renameSync throws EXDEV) is defensive code tested manually
+  })
+})
+
+describe("findMatchingEntries", () => {
+  it("returns empty array when no matches", () => {
+    expect(findMatchingEntries("nonexistent")).toEqual([])
+  })
+
+  it("finds exact id match", () => {
+    prependItem("reads", ITEM_A)
+    const results = findMatchingEntries("item-a")
+    expect(results).toHaveLength(1)
+    expect(results[0]).toMatchObject({ entry: ITEM_A, file: "reads" })
+  })
+
+  it("finds partial id match (case-insensitive)", () => {
+    prependItem("reads", ITEM_A)
+    const results = findMatchingEntries("ITEM")
+    expect(results.some((r) => r.entry.id === "item-a")).toBe(true)
+  })
+
+  it("finds partial title match (case-insensitive)", () => {
+    prependItem("watches", ITEM_B)
+    const results = findMatchingEntries("item b")
+    expect(results.some((r) => r.entry.id === "item-b")).toBe(true)
+  })
+
+  it("returns matches across multiple files", () => {
+    prependItem("reads", ITEM_A)
+    prependItem("listens", ITEM_B)
+    const results = findMatchingEntries("item")
+    expect(results.length).toBeGreaterThanOrEqual(2)
+    const files = results.map((r) => r.file)
+    expect(files).toContain("reads")
+    expect(files).toContain("listens")
   })
 })
