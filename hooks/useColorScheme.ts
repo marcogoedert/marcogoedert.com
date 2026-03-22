@@ -32,7 +32,6 @@ export function useColorScheme() {
     const actual = readCookie() ?? getSystemPreference();
     setColorScheme(actual);
     applyScheme(actual);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
