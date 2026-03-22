@@ -5,7 +5,7 @@ import { input, select, confirm } from "@inquirer/prompts"
 import { detectUrl } from "./lib/detect"
 import { fetchSpotifyAlbum, fetchSpotifyTrack } from "./lib/spotify"
 import { fetchTmdbTitle } from "./lib/tmdb"
-import { searchAndSelectBook } from "./lib/books"
+import { searchAndSelectBook, extractQueryFromGoodreadsSlug } from "./lib/books"
 import {
   prependItem,
   findDuplicateId,
@@ -67,8 +67,9 @@ async function addCommand(url: string): Promise<void> {
     checkEnvVars(["TMDB_API_KEY"])
     fetched = await fetchTmdbTitle(detected.id, detected.originalUrl, process.env.TMDB_API_KEY!)
   } else {
-    // searchAndSelectBook returns BookResultWithUrl (has url field = originalUrl)
-    fetched = await searchAndSelectBook(detected.id, detected.originalUrl)
+    const defaultQuery = extractQueryFromGoodreadsSlug(detected.id)
+    const bookQuery = await input({ message: "Search query (add author for better results)", default: defaultQuery })
+    fetched = await searchAndSelectBook(bookQuery, detected.originalUrl)
   }
 
   console.log(`\nFound: ${fetched.title} — ${fetched.creator}`)

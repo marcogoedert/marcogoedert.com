@@ -51,12 +51,11 @@ export function parseBookResults(
 }
 
 export async function searchAndSelectBook(
-  slug: string,
+  query: string,
   originalUrl: string,
 ): Promise<BookResultWithUrl> {
-  const query = extractQueryFromGoodreadsSlug(slug)
   const res = await fetch(
-    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=5`,
+    `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=10`,
   )
   if (!res.ok) throw new Error(`Google Books fetch failed: ${res.status} ${res.url}`)
   const data = (await res.json()) as { items?: Array<{ volumeInfo: VolumeInfo }> }
