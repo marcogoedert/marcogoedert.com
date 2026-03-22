@@ -25,11 +25,6 @@ describe("run — argument parsing", () => {
     expect(process.exit).toHaveBeenCalledWith(1)
   })
 
-  it("prints usage and exits 1 on 'add' without URL", async () => {
-    await expect(run(["add"])).rejects.toThrow("process.exit(1)")
-    expect(process.exit).toHaveBeenCalledWith(1)
-  })
-
   it("prints usage and exits 1 on 'edit' without query", async () => {
     await expect(run(["edit"])).rejects.toThrow("process.exit(1)")
     expect(process.exit).toHaveBeenCalledWith(1)

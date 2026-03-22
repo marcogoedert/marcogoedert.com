@@ -4,6 +4,8 @@ interface SpotifyImage {
   height: number | null
 }
 
+import { select } from "@inquirer/prompts"
+
 interface SpotifyAlbumResponse {
   id: string
   name: string
@@ -86,6 +88,41 @@ export async function fetchSpotifyAlbum(
   })
   if (!res.ok) throw new Error(`Spotify album fetch failed: ${res.status} ${res.url}`)
   return parseSpotifyAlbum((await res.json()) as SpotifyAlbumResponse)
+}
+
+export async function searchAndSelectSpotify(
+  query: string,
+  clientId: string,
+  clientSecret: string
+): Promise<SpotifyAlbumData> {
+  const token = await getSpotifyToken(clientId, clientSecret)
+  const res = await fetch(
+    `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=album,track&limit=5`,
+    { headers: { Authorization: `Bearer ${token}` } }
+  )
+  if (!res.ok) throw new Error(`Spotify search failed: ${res.status} ${res.url}`)
+  const data = (await res.json()) as {
+    albums?: { items: SpotifyAlbumResponse[] }
+    tracks?: { items: SpotifyTrackResponse[] }
+  }
+
+  const albumItems = (data.albums?.items ?? []).map((a) => {
+    const parsed = parseSpotifyAlbum(a)
+    return { ...parsed, label: `${parsed.title} — ${parsed.creator} (album)` }
+  })
+  const trackItems = (data.tracks?.items ?? []).map((t) => {
+    const parsed = parseSpotifyTrack(t)
+    return { ...parsed, label: `${parsed.title} — ${parsed.creator} (track)` }
+  })
+  const allItems = [...albumItems, ...trackItems]
+
+  if (allItems.length === 0) throw new Error(`No Spotify results for '${query}'`)
+  if (allItems.length === 1) return allItems[0]
+
+  return select({
+    message: "Select:",
+    choices: allItems.map((r) => ({ name: r.label, value: r as SpotifyAlbumData })),
+  })
 }
 
 export async function fetchSpotifyTrack(

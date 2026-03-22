@@ -3,8 +3,8 @@ configDotenv({ path: ".env.local" })
 
 import { input, select, confirm } from "@inquirer/prompts"
 import { detectUrl } from "./lib/detect"
-import { fetchSpotifyAlbum, fetchSpotifyTrack } from "./lib/spotify"
-import { fetchTmdbTitle } from "./lib/tmdb"
+import { fetchSpotifyAlbum, fetchSpotifyTrack, searchAndSelectSpotify } from "./lib/spotify"
+import { fetchTmdbTitle, searchAndSelectTmdb } from "./lib/tmdb"
 import { searchAndSelectBook, extractQueryFromGoodreadsSlug } from "./lib/books"
 import {
   prependItem,
@@ -20,7 +20,7 @@ import type { IMediaItem } from "../lib/schemas"
 function printUsage(): void {
   console.error(`
 Usage:
-  npm run media add <url>          # fetch metadata, prompt for fields, append
+  npm run media add [url]          # fetch metadata from URL, or interactive search if omitted
   npm run media edit <id|query>    # edit existing entry by exact id or fuzzy search
   npm run media remove <id|query>  # delete existing entry by exact id or fuzzy search
 `.trim())
@@ -44,39 +44,70 @@ function generateId(type: ContentFile, creator: string, title: string): string {
   return slugify(title)
 }
 
-async function addCommand(url: string): Promise<void> {
-  const detected = detectUrl(url)
-  if (!detected.ok) {
-    console.error(detected.error)
-    process.exit(1)
-  }
+function isUrl(str: string): boolean {
+  try { new URL(str); return true } catch { return false }
+}
 
-  console.log("\nFetching metadata...\n")
-
-  type FetchedData = { title: string; creator: string; coverImage: string; url: string; publishedYear?: number }
+async function addCommand(urlOrQuery?: string): Promise<void> {
+  type FetchedData = { title: string; creator: string; coverImage: string; url: string | null; publishedYear?: number }
+  let contentType: ContentFile
   let fetched: FetchedData
 
-  if (detected.type === "listens") {
-    checkEnvVars(["SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET"])
-    if (detected.spotifyType === "track") {
-      fetched = await fetchSpotifyTrack(detected.id, process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!)
-    } else {
-      fetched = await fetchSpotifyAlbum(detected.id, process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!)
+  if (urlOrQuery && isUrl(urlOrQuery)) {
+    const detected = detectUrl(urlOrQuery)
+    if (!detected.ok) {
+      console.error(detected.error)
+      process.exit(1)
     }
-  } else if (detected.type === "watches") {
-    checkEnvVars(["TMDB_API_KEY"])
-    fetched = await fetchTmdbTitle(detected.id, detected.originalUrl, process.env.TMDB_API_KEY!)
+    contentType = detected.type
+
+    console.log("\nFetching metadata...\n")
+
+    if (detected.type === "listens") {
+      checkEnvVars(["SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET"])
+      if (detected.spotifyType === "track") {
+        fetched = await fetchSpotifyTrack(detected.id, process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!)
+      } else {
+        fetched = await fetchSpotifyAlbum(detected.id, process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!)
+      }
+    } else if (detected.type === "watches") {
+      checkEnvVars(["TMDB_API_KEY"])
+      fetched = await fetchTmdbTitle(detected.id, detected.originalUrl, process.env.TMDB_API_KEY!)
+    } else {
+      const defaultQuery = extractQueryFromGoodreadsSlug(detected.id)
+      const bookQuery = await input({ message: "Search query (add author for better results)", default: defaultQuery })
+      fetched = await searchAndSelectBook(bookQuery, detected.originalUrl)
+    }
   } else {
-    const defaultQuery = extractQueryFromGoodreadsSlug(detected.id)
-    const bookQuery = await input({ message: "Search query (add author for better results)", default: defaultQuery })
-    fetched = await searchAndSelectBook(bookQuery, detected.originalUrl)
+    contentType = await select({
+      message: "Type:",
+      choices: [
+        { name: "Book", value: "reads" as ContentFile },
+        { name: "Movie / TV", value: "watches" as ContentFile },
+        { name: "Music (album or track)", value: "listens" as ContentFile },
+      ],
+    })
+    const queryMessage = contentType === "reads" ? "Search query (add author for better results)" : "Search query"
+    const query = await input({ message: queryMessage, default: urlOrQuery ?? "" })
+
+    console.log("\nFetching metadata...\n")
+
+    if (contentType === "listens") {
+      checkEnvVars(["SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET"])
+      fetched = await searchAndSelectSpotify(query, process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!)
+    } else if (contentType === "watches") {
+      checkEnvVars(["TMDB_API_KEY"])
+      fetched = await searchAndSelectTmdb(query, process.env.TMDB_API_KEY!)
+    } else {
+      fetched = await searchAndSelectBook(query, null)
+    }
   }
 
   console.log(`\nFound: ${fetched.title} — ${fetched.creator}`)
   console.log(`Cover: ${fetched.coverImage || "(none)"}`)
   console.log()
 
-  const defaultId = generateId(detected.type, fetched.creator, fetched.title)
+  const defaultId = generateId(contentType, fetched.creator, fetched.title)
   const id = await input({ message: "Confirm ID", default: defaultId })
 
   const dup = findDuplicateId(id)
@@ -91,7 +122,7 @@ async function addCommand(url: string): Promise<void> {
   const noteInput = await input({ message: "Add a note (optional)" })
 
   let readDate: string | undefined
-  if (detected.type === "reads") {
+  if (contentType === "reads") {
     const rd = await input({ message: 'Read date (e.g. "January 2026", leave blank to skip)' })
     if (rd) readDate = rd
   }
@@ -107,8 +138,8 @@ async function addCommand(url: string): Promise<void> {
     url: fetched.url || null,
     note: noteInput || null,
     ...(rating !== undefined && { rating }),
-    ...(detected.type === "reads" && fetched.publishedYear !== undefined && { publishedYear: fetched.publishedYear }),
-    ...(detected.type === "reads" && readDate !== undefined && { readDate }),
+    ...(contentType === "reads" && fetched.publishedYear !== undefined && { publishedYear: fetched.publishedYear }),
+    ...(contentType === "reads" && readDate !== undefined && { readDate }),
   }
 
   const validation = MediaItemSchema.safeParse(entry)
@@ -118,8 +149,8 @@ async function addCommand(url: string): Promise<void> {
     process.exit(1)
   }
 
-  prependItem(detected.type, validation.data)
-  console.log(`\n✓ Added to content/${detected.type}.json`)
+  prependItem(contentType, validation.data)
+  console.log(`\n✓ Added to content/${contentType}.json`)
 }
 
 async function editCommand(query: string): Promise<void> {
@@ -224,7 +255,6 @@ export async function run(args: string[]): Promise<void> {
   const [cmd, arg] = args
 
   if (cmd === "add") {
-    if (!arg) { printUsage(); process.exit(1) }
     await addCommand(arg)
   } else if (cmd === "edit") {
     if (!arg) { printUsage(); process.exit(1) }

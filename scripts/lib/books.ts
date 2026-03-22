@@ -8,7 +8,7 @@ export interface BookResult {
   label: string // "Title — Author (Year)" for select prompt
 }
 
-export type BookResultWithUrl = BookResult & { url: string }
+export type BookResultWithUrl = BookResult & { url: string | null }
 
 interface VolumeInfo {
   title: string
@@ -52,7 +52,7 @@ export function parseBookResults(
 
 export async function searchAndSelectBook(
   query: string,
-  originalUrl: string,
+  originalUrl: string | null,
 ): Promise<BookResultWithUrl> {
   const res = await fetch(
     `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=10`,
