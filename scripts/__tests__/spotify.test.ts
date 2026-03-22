@@ -1,7 +1,8 @@
 // @vitest-environment node
 import { describe, it, expect } from "vitest"
-import { parseSpotifyAlbum } from "../lib/spotify"
+import { parseSpotifyAlbum, parseSpotifyTrack } from "../lib/spotify"
 import fixture from "./fixtures/spotify-album.json"
+import trackFixture from "./fixtures/spotify-track.json"
 
 describe("parseSpotifyAlbum", () => {
   it("extracts title from album name", () => {
@@ -52,6 +53,36 @@ describe("parseSpotifyAlbum", () => {
     const logs: string[] = []
     const warn = (msg: string) => logs.push(msg)
     const result = parseSpotifyAlbum({ ...fixture, images: [] }, warn)
+    expect(result.coverImage).toBe("")
+    expect(logs[0]).toMatch(/cover/i)
+  })
+})
+
+describe("parseSpotifyTrack", () => {
+  it("extracts title from track name", () => {
+    const result = parseSpotifyTrack(trackFixture)
+    expect(result.title).toBe("Numb")
+  })
+
+  it("extracts creator from first artist only", () => {
+    const result = parseSpotifyTrack(trackFixture)
+    expect(result.creator).toBe("Linkin Park")
+  })
+
+  it("reconstructs canonical track URL from track id", () => {
+    const result = parseSpotifyTrack(trackFixture)
+    expect(result.url).toBe("https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT")
+  })
+
+  it("selects 640px cover image from album images", () => {
+    const result = parseSpotifyTrack(trackFixture)
+    expect(result.coverImage).toBe("https://i.scdn.co/image/medium")
+  })
+
+  it("returns empty coverImage and warns when album images array is empty", () => {
+    const logs: string[] = []
+    const warn = (msg: string) => logs.push(msg)
+    const result = parseSpotifyTrack({ ...trackFixture, album: { images: [] } }, warn)
     expect(result.coverImage).toBe("")
     expect(logs[0]).toMatch(/cover/i)
   })

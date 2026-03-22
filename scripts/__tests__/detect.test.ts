@@ -2,33 +2,65 @@
 import { describe, it, expect } from "vitest"
 import { detectUrl } from "../lib/detect"
 
-const UNSUPPORTED = "Unsupported URL format. Supported: open.spotify.com/album/..., goodreads.com/book/show/..., imdb.com/title/tt..."
+const UNSUPPORTED = "Unsupported URL format. Supported: open.spotify.com/album/..., open.spotify.com/track/..., goodreads.com/book/show/..., imdb.com/title/tt..."
+const SPOTIFY_ONLY = "Only Spotify album and track URLs are supported (open.spotify.com/album/..., open.spotify.com/track/...)"
 
 describe("detectUrl — Spotify", () => {
-  it("detects album URL, sets id to album ID", () => {
+  it("detects album URL, sets id to album ID and spotifyType to album", () => {
     const result = detectUrl("https://open.spotify.com/album/2lIZef4lzdvZkiiCzvPKj7")
     expect(result).toEqual({
       ok: true,
       type: "listens",
       id: "2lIZef4lzdvZkiiCzvPKj7",
       originalUrl: "https://open.spotify.com/album/2lIZef4lzdvZkiiCzvPKj7",
+      spotifyType: "album",
+    })
+  })
+
+  it("detects track URL, sets id to track ID and spotifyType to track", () => {
+    const result = detectUrl("https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT")
+    expect(result).toEqual({
+      ok: true,
+      type: "listens",
+      id: "4cOdK2wGLETKBW3PvgPWqT",
+      originalUrl: "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT",
+      spotifyType: "track",
+    })
+  })
+
+  it("detects locale-prefixed album URL (e.g. /intl-pt/album/...)", () => {
+    const url = "https://open.spotify.com/intl-pt/album/5JjnPCfpp6redrkKpXZAs8?si=abc"
+    const result = detectUrl(url)
+    expect(result).toEqual({
+      ok: true,
+      type: "listens",
+      id: "5JjnPCfpp6redrkKpXZAs8",
+      originalUrl: url,
+      spotifyType: "album",
+    })
+  })
+
+  it("detects locale-prefixed track URL (e.g. /intl-pt/track/...)", () => {
+    const url = "https://open.spotify.com/intl-pt/track/4cOdK2wGLETKBW3PvgPWqT"
+    const result = detectUrl(url)
+    expect(result).toEqual({
+      ok: true,
+      type: "listens",
+      id: "4cOdK2wGLETKBW3PvgPWqT",
+      originalUrl: url,
+      spotifyType: "track",
     })
   })
 
   it("strips query params, preserves originalUrl as raw input", () => {
     const raw = "https://open.spotify.com/album/2lIZef4lzdvZkiiCzvPKj7?si=abc123&utm_source=foo"
     const result = detectUrl(raw)
-    expect(result).toMatchObject({ ok: true, id: "2lIZef4lzdvZkiiCzvPKj7", originalUrl: raw })
-  })
-
-  it("rejects /track/ URL", () => {
-    const result = detectUrl("https://open.spotify.com/track/abc")
-    expect(result).toEqual({ ok: false, error: "Only Spotify album URLs are supported (open.spotify.com/album/...)" })
+    expect(result).toMatchObject({ ok: true, id: "2lIZef4lzdvZkiiCzvPKj7", originalUrl: raw, spotifyType: "album" })
   })
 
   it("rejects /playlist/ URL", () => {
     const result = detectUrl("https://open.spotify.com/playlist/abc")
-    expect(result).toEqual({ ok: false, error: "Only Spotify album URLs are supported (open.spotify.com/album/...)" })
+    expect(result).toEqual({ ok: false, error: SPOTIFY_ONLY })
   })
 
   it("rejects spotify.link short URLs", () => {

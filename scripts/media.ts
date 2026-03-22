@@ -3,7 +3,7 @@ configDotenv({ path: ".env.local" })
 
 import { input, select, confirm } from "@inquirer/prompts"
 import { detectUrl } from "./lib/detect"
-import { fetchSpotifyAlbum } from "./lib/spotify"
+import { fetchSpotifyAlbum, fetchSpotifyTrack } from "./lib/spotify"
 import { fetchTmdbTitle } from "./lib/tmdb"
 import { searchAndSelectBook } from "./lib/books"
 import {
@@ -58,7 +58,11 @@ async function addCommand(url: string): Promise<void> {
 
   if (detected.type === "listens") {
     checkEnvVars(["SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET"])
-    fetched = await fetchSpotifyAlbum(detected.id, process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!)
+    if (detected.spotifyType === "track") {
+      fetched = await fetchSpotifyTrack(detected.id, process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!)
+    } else {
+      fetched = await fetchSpotifyAlbum(detected.id, process.env.SPOTIFY_CLIENT_ID!, process.env.SPOTIFY_CLIENT_SECRET!)
+    }
   } else if (detected.type === "watches") {
     checkEnvVars(["TMDB_API_KEY"])
     fetched = await fetchTmdbTitle(detected.id, detected.originalUrl, process.env.TMDB_API_KEY!)

@@ -1,9 +1,13 @@
 export type DetectResult =
-  | { ok: true; type: "listens" | "watches" | "reads"; id: string; originalUrl: string }
+  | { ok: true; type: "listens"; id: string; originalUrl: string; spotifyType: "album" | "track" }
+  | { ok: true; type: "watches" | "reads"; id: string; originalUrl: string }
   | { ok: false; error: string }
 
 const UNSUPPORTED_ERROR =
-  "Unsupported URL format. Supported: open.spotify.com/album/..., goodreads.com/book/show/..., imdb.com/title/tt..."
+  "Unsupported URL format. Supported: open.spotify.com/album/..., open.spotify.com/track/..., goodreads.com/book/show/..., imdb.com/title/tt..."
+
+const SPOTIFY_ONLY_ERROR =
+  "Only Spotify album and track URLs are supported (open.spotify.com/album/..., open.spotify.com/track/...)"
 
 export function detectUrl(rawUrl: string): DetectResult {
   let url: URL
@@ -15,12 +19,14 @@ export function detectUrl(rawUrl: string): DetectResult {
 
   if (url.hostname === "open.spotify.com") {
     const parts = url.pathname.split("/").filter(Boolean)
-    if (parts[0] !== "album") {
-      return { ok: false, error: "Only Spotify album URLs are supported (open.spotify.com/album/...)" }
-    }
-    const id = parts[1]
+    // Find album/track/playlist segment — handles locale prefix (e.g. /intl-pt/album/...)
+    const typeIdx = parts.findIndex((p) => p === "album" || p === "track" || p === "playlist")
+    if (typeIdx === -1) return { ok: false, error: UNSUPPORTED_ERROR }
+    const resourceType = parts[typeIdx]
+    if (resourceType === "playlist") return { ok: false, error: SPOTIFY_ONLY_ERROR }
+    const id = parts[typeIdx + 1]
     if (!id) return { ok: false, error: UNSUPPORTED_ERROR }
-    return { ok: true, type: "listens", id, originalUrl: rawUrl }
+    return { ok: true, type: "listens", id, originalUrl: rawUrl, spotifyType: resourceType as "album" | "track" }
   }
 
   if (url.hostname === "www.goodreads.com" || url.hostname === "goodreads.com") {
