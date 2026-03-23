@@ -1,0 +1,57 @@
+[
+  {
+    "id": "the-pragmatic-programmer",
+    "title": "The Pragmatic Programmer",
+    "creator": "David Thomas",
+    "coverImage": "http://books.google.com/books/content?id=LhOlDwAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2019
+  },
+  {
+    "id": "getting-things-done",
+    "title": "Getting Things Done",
+    "creator": "David Allen",
+    "coverImage": "http://books.google.com/books/content?id=7PoYBAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2015
+  },
+  {
+    "id": "clean-code",
+    "title": "Clean Code",
+    "creator": "Robert C. Martin",
+    "coverImage": "http://books.google.com/books/content?id=hjEFCAAAQBAJ&printsec=frontcover&img=1&zoom=3&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2009
+  },
+  {
+    "id": "software-architecture-the-hard-parts",
+    "title": "Software Architecture: The Hard Parts",
+    "creator": "Neal Ford",
+    "coverImage": "http://books.google.com/books/content?id=N31EEAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2021
+  },
+  {
+    "id": "learning-domain-driven-design",
+    "title": "Learning Domain-Driven Design",
+    "creator": "Vlad Khononov",
+    "coverImage": "http://books.google.com/books/content?id=nAtHEAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2021
+  },
+  {
+    "id": "refactoring-martin-fowler",
+    "title": "Refactoring: Improving the Design of Existing Code",
+    "creator": "Martin Fowler",
+    "coverImage": "http://books.google.com/books/content?id=2H1_DwAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": "https://www.goodreads.com/book/show/218464849-refactoring",
+    "note": null,
+    "rating": 3,
+    "publishedYear": 2018
+  }
+]

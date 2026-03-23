@@ -5,32 +5,35 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./hoc/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: ["selector", "[data-color-scheme='dark']"],
   theme: {
+    screens: {
+      xs: "450px",
+      sm: "640px",
+      md: "769px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
+    colors: {
+      background: "rgb(var(--color-bg) / <alpha-value>)",
+      foreground: "rgb(var(--color-text) / <alpha-value>)",
+      muted: "rgb(var(--color-text-muted) / <alpha-value>)",
+      border: "rgb(var(--color-border) / <alpha-value>)",
+      surface: "rgb(var(--color-surface) / <alpha-value>)",
+      transparent: "transparent",
+      current: "currentColor",
+    },
     extend: {
-      colors: {
-        primary: "#1f1f1f",
-        secondary: "#aaa6c3",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
-        "white-100": "#f3f3f3",
-        brand: "#915EFF",
-      },
-      boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
-      },
-      screens: {
-        xs: "450px",
-      },
-      backgroundImage: {
-        "hero-pattern": "url('../assets/herobg.png')",
-        "navbar-logo-dark": "url('../assets/marco-logo-dark.svg')",
-        "navbar-logo-light": "url('../assets/marco-logo-light.svg')",
+      fontFamily: {
+        fraunces: ["var(--font-fraunces)", "serif"],
+        geist: ["var(--font-geist)", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "monospace"],
       },
     },
   },
   plugins: [],
 };
+
 export default config;
