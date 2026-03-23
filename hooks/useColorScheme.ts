@@ -34,12 +34,12 @@ export function useColorScheme() {
     applyScheme(actual);
   }, []);
 
-  useEffect(() => {
-    applyScheme(colorScheme);
-  }, [colorScheme]);
-
   const toggleColorScheme = useCallback(() => {
-    setColorScheme((prev) => (prev === "light" ? "dark" : "light"));
+    setColorScheme((prev) => {
+      const next = prev === "light" ? "dark" : "light";
+      applyScheme(next);
+      return next;
+    });
   }, []);
 
   return { colorScheme, toggleColorScheme };
