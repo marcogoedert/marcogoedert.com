@@ -14,7 +14,6 @@ interface CardProps {
 export function Card({ item, aspectRatio }: CardProps) {
   const spotlight = useSpotlight();
   const [imgError, setImgError] = useState(false);
-  const imgHeight = aspectRatio === "2/3" ? 750 : 500;
 
   const inner = (
     <div
@@ -22,19 +21,19 @@ export function Card({ item, aspectRatio }: CardProps) {
       className="relative rounded-sm overflow-hidden bg-surface cursor-default spotlight-card w-full"
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
     >
-      {/* Cover image */}
-      <div className="overflow-hidden w-full bg-surface" style={{ aspectRatio }}>
+      {/* Cover image — container dimensions locked by aspect-ratio; fill image is out-of-flow to prevent CLS */}
+      <div className="relative overflow-hidden w-full bg-surface" style={{ aspectRatio }}>
         {imgError ? (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center">
             <span className="font-mono text-[10px] text-muted uppercase tracking-widest">No image</span>
           </div>
         ) : (
           <Image
             src={item.coverImage}
             alt={item.title}
-            width={500}
-            height={imgHeight}
-            className="object-cover w-full h-full"
+            fill
+            sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1024px) 50vw, 448px"
+            className="object-cover"
             onError={() => setImgError(true)}
           />
         )}

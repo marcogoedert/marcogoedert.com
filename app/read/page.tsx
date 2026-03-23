@@ -12,8 +12,8 @@ export default function ReadPage() {
   const items = getReads();
 
   return (
-    <div className="flex flex-col items-center gap-12 text-center w-full">
-      <AnimatedSection index={0}>
+    <div className="flex flex-col gap-12 w-full">
+      <AnimatedSection index={0} className="w-full">
         {items.length === 0 ? (
           <p className="font-mono text-sm text-muted">Nothing here yet.</p>
         ) : (
