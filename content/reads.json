@@ -1,24 +1,57 @@
 [
   {
-    "id": "tomorrow-and-tomorrow",
-    "title": "Tomorrow, and Tomorrow, and Tomorrow",
-    "creator": "Gabrielle Zevin",
-    "coverImage": "https://covers.openlibrary.org/b/isbn/9780593321201-L.jpg",
-    "url": "https://www.goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow",
-    "note": "A novel about making things — the obsession, the friction, the meaning found in building something with someone. Hits differently when you spend your days shipping code.",
-    "publishedYear": 2022,
-    "readDate": "January 2026",
-    "rating": 4
+    "id": "the-pragmatic-programmer",
+    "title": "The Pragmatic Programmer",
+    "creator": "David Thomas",
+    "coverImage": "http://books.google.com/books/content?id=LhOlDwAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2019
   },
   {
-    "id": "the-likeness",
-    "title": "The Likeness (Dublin Murder Squad, #2)",
-    "creator": "Tana French",
-    "coverImage": "https://covers.openlibrary.org/b/isbn/9780593321201-L.jpg",
-    "url": "https://www.goodreads.com/book/show/1536545.The_Likeness",
-    "note": "Detective fiction where the real subject is identity and belonging. French writes atmosphere better than almost anyone — the kind of book you finish in a weekend without noticing.",
-    "publishedYear": 2008,
-    "readDate": "August 2025",
-    "rating": 4
+    "id": "getting-things-done",
+    "title": "Getting Things Done",
+    "creator": "David Allen",
+    "coverImage": "http://books.google.com/books/content?id=7PoYBAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2015
+  },
+  {
+    "id": "clean-code",
+    "title": "Clean Code",
+    "creator": "Robert C. Martin",
+    "coverImage": "http://books.google.com/books/content?id=hjEFCAAAQBAJ&printsec=frontcover&img=1&zoom=3&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2009
+  },
+  {
+    "id": "software-architecture-the-hard-parts",
+    "title": "Software Architecture: The Hard Parts",
+    "creator": "Neal Ford",
+    "coverImage": "http://books.google.com/books/content?id=N31EEAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2021
+  },
+  {
+    "id": "learning-domain-driven-design",
+    "title": "Learning Domain-Driven Design",
+    "creator": "Vlad Khononov",
+    "coverImage": "http://books.google.com/books/content?id=nAtHEAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": null,
+    "note": null,
+    "publishedYear": 2021
+  },
+  {
+    "id": "refactoring-martin-fowler",
+    "title": "Refactoring: Improving the Design of Existing Code",
+    "creator": "Martin Fowler",
+    "coverImage": "http://books.google.com/books/content?id=2H1_DwAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api",
+    "url": "https://www.goodreads.com/book/show/218464849-refactoring",
+    "note": null,
+    "rating": 3,
+    "publishedYear": 2018
   }
 ]

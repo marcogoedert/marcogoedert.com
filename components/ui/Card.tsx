@@ -12,6 +12,7 @@ interface CardProps {
 
 export function Card({ item, aspectRatio }: CardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const imgHeight = aspectRatio === "2/3" ? 750 : 500;
 
   const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const card = cardRef.current;
@@ -29,24 +30,22 @@ export function Card({ item, aspectRatio }: CardProps) {
     card.style.setProperty("--mouse-y", (((e.clientY - rect.top) / rect.height) * 100).toFixed(0) + "%");
   }, []);
 
-  const paddingTop = aspectRatio === "1/1" ? "100%" : "150%";
-
   const inner = (
     <div
       ref={cardRef}
-      className="relative rounded-sm overflow-hidden bg-surface cursor-default spotlight-card"
+      className="relative rounded-sm overflow-hidden bg-surface cursor-default spotlight-card w-full"
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
     >
       {/* Cover image */}
-      <div className="relative w-full overflow-hidden bg-surface" style={{ paddingTop }}>
+      <div className="overflow-hidden w-full" style={{ aspectRatio }}>
         <Image
           src={item.coverImage}
           alt={item.title}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover"
+          width={500}
+          height={imgHeight}
+          className="object-cover w-full h-full"
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).style.display = "none";
           }}
@@ -55,12 +54,25 @@ export function Card({ item, aspectRatio }: CardProps) {
 
       {/* Card body */}
       <div className="p-3">
-        <p className="text-foreground text-sm font-medium truncate">
-          {item.title}
-        </p>
-        <p className="font-mono text-xs text-muted uppercase tracking-wider truncate mt-1">
-          {item.creator}
-        </p>
+        {item.albumName ? (
+          <>
+            <div className="flex items-baseline justify-between gap-2">
+              <p className="text-foreground text-sm font-semibold truncate">{item.title}</p>
+              {item.duration && (
+                <p className="font-mono text-xs text-muted shrink-0">{item.duration}</p>
+              )}
+            </div>
+            <p className="text-foreground text-xs text-center truncate mt-1">{item.creator}</p>
+            {item.albumName !== item.title && (
+              <p className="text-muted text-xs text-center truncate">{item.albumName}</p>
+            )}
+          </>
+        ) : (
+          <>
+            <p className="text-foreground text-sm font-medium truncate">{item.title}</p>
+            <p className="font-mono text-xs text-muted uppercase tracking-wider truncate mt-1">{item.creator}</p>
+          </>
+        )}
         {item.note && (
           <p className="text-muted text-xs mt-2 line-clamp-2">{item.note}</p>
         )}

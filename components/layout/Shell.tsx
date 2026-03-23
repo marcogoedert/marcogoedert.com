@@ -11,7 +11,7 @@ export function Shell({ children }: ShellProps) {
   const year = new Date().getFullYear();
 
   return (
-    <div className="min-h-dvh relative">
+    <div className="min-h-dvh flex flex-col">
       {/* Top-left: year */}
       <div className="fixed top-6 left-6 z-10">
         <span className="font-mono text-[11px] text-foreground/50">
@@ -24,20 +24,8 @@ export function Shell({ children }: ShellProps) {
         <TopNav />
       </div>
 
-      {/* Bottom-left: editorial note (desktop only) */}
-      <div className="hidden md:block fixed bottom-6 left-6 z-10">
-        <span className="font-mono text-[11px] text-foreground/50">
-          {EDITORIAL_NOTE}
-        </span>
-      </div>
-
-      {/* Bottom-right / right-edge: section nav */}
-      <div className="fixed bottom-6 right-6 z-10">
-        <CornerNav />
-      </div>
-
       {/* Main content */}
-      <main className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6 sm:px-8">
+      <main className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6">
         {/* Title: full page width */}
         <SiteTitle />
         {/* Content: constrained */}
@@ -45,6 +33,18 @@ export function Shell({ children }: ShellProps) {
           {children}
         </div>
       </main>
+
+      {/* Sticky footer: editorial note left, section nav right */}
+      <footer className="flex justify-between sticky bottom-8 h-0 z-10 px-6">
+        <div className="hidden lg:block w-1/6 self-end">
+          <p className="font-mono text-xs italic text-foreground/40">
+            {EDITORIAL_NOTE}
+          </p>
+        </div>
+        <div className="ml-auto self-end">
+          <CornerNav />
+        </div>
+      </footer>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export function AnimatedTitle({ target, disabled }: AnimatedTitleProps) {
     <h1
       aria-live="polite"
       aria-label={target}
-      className="font-fraunces italic text-foreground leading-none text-3xl md:text-5xl min-h-[2rem] md:min-h-[3rem]"
+      className="font-fraunces italic text-foreground leading-tight text-5xl md:text-7xl min-h-[11rem] sm:min-h-[7rem] md:min-h-[5rem]"
     >
       <Link href="/" aria-label="Home" className="hover:underline underline-offset-4">
         <span aria-hidden="true">{linkPart}</span>

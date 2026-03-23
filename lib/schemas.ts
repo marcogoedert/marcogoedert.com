@@ -19,6 +19,8 @@ export const MediaItemSchema = z.object({
   rating: z.number().min(1).max(5).nullable().optional(),
   publishedYear: z.number().nullable().optional(),
   readDate: z.string().nullable().optional(),
+  albumName: z.string().optional(),
+  duration: z.string().optional(),
 });
 
 export const MediaItemArraySchema = MediaItemSchema.array().refine(
