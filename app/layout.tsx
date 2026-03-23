@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Shell } from "@/components/layout/Shell";
 import { PageTransition } from "@/components/layout/PageTransition";
 
@@ -31,6 +32,7 @@ const fouc = `(function(){
 })();`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marcogoedert.com"),
   title: {
     default: "Marco Goedert",
     template: "%s | Marco Goedert",
@@ -59,6 +61,7 @@ export default function RootLayout({
         <Shell>
           <PageTransition>{children}</PageTransition>
         </Shell>
+        <Analytics />
       </body>
     </html>
   );

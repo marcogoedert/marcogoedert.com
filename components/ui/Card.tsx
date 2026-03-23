@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useCallback } from "react";
+import { useState } from "react";
+import { useSpotlight } from "@/hooks/useSpotlight";
 import type { IMediaItem } from "@/lib/schemas";
 
 interface CardProps {
@@ -11,45 +12,31 @@ interface CardProps {
 }
 
 export function Card({ item, aspectRatio }: CardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const imgHeight = aspectRatio === "2/3" ? 750 : 500;
-
-  const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--mouse-x", (((e.clientX - rect.left) / rect.width) * 100).toFixed(0) + "%");
-    card.style.setProperty("--mouse-y", (((e.clientY - rect.top) / rect.height) * 100).toFixed(0) + "%");
-  }, []);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--mouse-x", (((e.clientX - rect.left) / rect.width) * 100).toFixed(0) + "%");
-    card.style.setProperty("--mouse-y", (((e.clientY - rect.top) / rect.height) * 100).toFixed(0) + "%");
-  }, []);
+  const spotlight = useSpotlight();
+  const [imgError, setImgError] = useState(false);
 
   const inner = (
     <div
-      ref={cardRef}
+      {...spotlight}
       className="relative rounded-sm overflow-hidden bg-surface cursor-default spotlight-card w-full"
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
-      onMouseEnter={handleMouseEnter}
-      onMouseMove={handleMouseMove}
     >
-      {/* Cover image */}
-      <div className="overflow-hidden w-full" style={{ aspectRatio }}>
-        <Image
-          src={item.coverImage}
-          alt={item.title}
-          width={500}
-          height={imgHeight}
-          className="object-cover w-full h-full"
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).style.display = "none";
-          }}
-        />
+      {/* Cover image — container dimensions locked by aspect-ratio; fill image is out-of-flow to prevent CLS */}
+      <div className="relative overflow-hidden w-full bg-surface" style={{ aspectRatio }}>
+        {imgError ? (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-mono text-[10px] text-muted uppercase tracking-widest">No image</span>
+          </div>
+        ) : (
+          <Image
+            src={item.coverImage}
+            alt={item.title}
+            fill
+            sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1024px) 50vw, 448px"
+            className="object-cover"
+            onError={() => setImgError(true)}
+          />
+        )}
       </div>
 
       {/* Card body */}

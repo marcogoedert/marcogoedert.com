@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { axe } from "jest-axe";
 
 vi.mock("@/hooks/useColorScheme", () => ({
   useColorScheme: () => ({ colorScheme: "dark", toggleColorScheme: vi.fn() }),
@@ -30,5 +31,10 @@ describe("TopNav", () => {
     render(<TopNav />);
     const toggle = screen.getByRole("button", { name: /switch to/i });
     expect(toggle).toBeDefined();
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(<TopNav />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
