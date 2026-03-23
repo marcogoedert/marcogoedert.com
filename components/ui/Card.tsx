@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useCallback } from "react";
+import { useSpotlight } from "@/hooks/useSpotlight";
 import type { IMediaItem } from "@/lib/schemas";
 
 interface CardProps {
@@ -11,32 +11,14 @@ interface CardProps {
 }
 
 export function Card({ item, aspectRatio }: CardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const spotlight = useSpotlight();
   const imgHeight = aspectRatio === "2/3" ? 750 : 500;
-
-  const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--mouse-x", (((e.clientX - rect.left) / rect.width) * 100).toFixed(0) + "%");
-    card.style.setProperty("--mouse-y", (((e.clientY - rect.top) / rect.height) * 100).toFixed(0) + "%");
-  }, []);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--mouse-x", (((e.clientX - rect.left) / rect.width) * 100).toFixed(0) + "%");
-    card.style.setProperty("--mouse-y", (((e.clientY - rect.top) / rect.height) * 100).toFixed(0) + "%");
-  }, []);
 
   const inner = (
     <div
-      ref={cardRef}
+      {...spotlight}
       className="relative rounded-sm overflow-hidden bg-surface cursor-default spotlight-card w-full"
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
-      onMouseEnter={handleMouseEnter}
-      onMouseMove={handleMouseMove}
     >
       {/* Cover image */}
       <div className="overflow-hidden w-full" style={{ aspectRatio }}>

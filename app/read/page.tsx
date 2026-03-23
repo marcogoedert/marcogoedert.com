@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/layout/AnimatedSection";
 
 export const metadata: Metadata = {
-  title: "WhAT I READ",
+  title: "WHAT I READ",
   description: "Books Marco has been reading lately.",
 };
 import { BookCard } from "@/components/ui/BookCard";

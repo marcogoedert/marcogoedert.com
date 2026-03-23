@@ -65,8 +65,8 @@ body {
   inset: 0;
   background: radial-gradient(
     circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0) 60%
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0) 60%
   );
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -75,4 +75,12 @@ body {
 }
 .spotlight-card:hover::before {
   opacity: 1;
+}
+
+[data-color-scheme="dark"] .spotlight-card::before {
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
 }

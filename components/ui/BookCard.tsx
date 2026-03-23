@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useCallback } from "react";
+import { useSpotlight } from "@/hooks/useSpotlight";
 import type { IMediaItem } from "@/lib/schemas";
 
 interface BookCardProps {
@@ -10,31 +10,13 @@ interface BookCardProps {
 }
 
 export function BookCard({ item }: BookCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--mouse-x", (((e.clientX - rect.left) / rect.width) * 100).toFixed(0) + "%");
-    card.style.setProperty("--mouse-y", (((e.clientY - rect.top) / rect.height) * 100).toFixed(0) + "%");
-  }, []);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--mouse-x", (((e.clientX - rect.left) / rect.width) * 100).toFixed(0) + "%");
-    card.style.setProperty("--mouse-y", (((e.clientY - rect.top) / rect.height) * 100).toFixed(0) + "%");
-  }, []);
+  const spotlight = useSpotlight();
 
   const inner = (
     <div
-      ref={cardRef}
+      {...spotlight}
       className="flex flex-col sm:flex-row border border-border overflow-hidden bg-surface spotlight-card cursor-default"
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
-      onMouseEnter={handleMouseEnter}
-      onMouseMove={handleMouseMove}
     >
       {/* Cover image — mobile: centered on top; desktop: fixed width on left */}
       <div className="flex justify-center sm:block sm:flex-shrink-0 sm:w-48 pt-4 sm:pt-0">

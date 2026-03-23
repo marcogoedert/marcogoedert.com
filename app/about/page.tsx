@@ -5,7 +5,7 @@ import { getExperiences } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Software engineer with experience across frontend, backend, and infrastructure. Currently at TELUS Digital.",
+  description: "Software engineer with a thing for fast, well-built web experiences. Full stack, based in Porto Alegre, Brazil.",
 };
 
 export default function AboutPage() {
