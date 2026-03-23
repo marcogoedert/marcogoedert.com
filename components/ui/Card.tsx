@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { useSpotlight } from "@/hooks/useSpotlight";
 import type { IMediaItem } from "@/lib/schemas";
 
@@ -12,6 +13,7 @@ interface CardProps {
 
 export function Card({ item, aspectRatio }: CardProps) {
   const spotlight = useSpotlight();
+  const [imgError, setImgError] = useState(false);
   const imgHeight = aspectRatio === "2/3" ? 750 : 500;
 
   const inner = (
@@ -21,17 +23,21 @@ export function Card({ item, aspectRatio }: CardProps) {
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
     >
       {/* Cover image */}
-      <div className="overflow-hidden w-full" style={{ aspectRatio }}>
-        <Image
-          src={item.coverImage}
-          alt={item.title}
-          width={500}
-          height={imgHeight}
-          className="object-cover w-full h-full"
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).style.display = "none";
-          }}
-        />
+      <div className="overflow-hidden w-full bg-surface" style={{ aspectRatio }}>
+        {imgError ? (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="font-mono text-[10px] text-muted uppercase tracking-widest">No image</span>
+          </div>
+        ) : (
+          <Image
+            src={item.coverImage}
+            alt={item.title}
+            width={500}
+            height={imgHeight}
+            className="object-cover w-full h-full"
+            onError={() => setImgError(true)}
+          />
+        )}
       </div>
 
       {/* Card body */}

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { useSpotlight } from "@/hooks/useSpotlight";
 import type { IMediaItem } from "@/lib/schemas";
 
@@ -11,6 +12,7 @@ interface BookCardProps {
 
 export function BookCard({ item }: BookCardProps) {
   const spotlight = useSpotlight();
+  const [imgError, setImgError] = useState(false);
 
   const inner = (
     <div
@@ -20,17 +22,21 @@ export function BookCard({ item }: BookCardProps) {
     >
       {/* Cover image — mobile: centered on top; desktop: fixed width on left */}
       <div className="flex justify-center sm:block sm:flex-shrink-0 sm:w-48 pt-4 sm:pt-0">
-        <div className="relative w-40 sm:w-full overflow-hidden" style={{ aspectRatio: "2/3" }}>
-          <Image
-            src={item.coverImage}
-            alt={item.title}
-            fill
-            sizes="(max-width: 640px) 160px, 192px"
-            className="object-cover"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).style.display = "none";
-            }}
-          />
+        <div className="relative w-40 sm:w-full overflow-hidden bg-surface" style={{ aspectRatio: "2/3" }}>
+          {imgError ? (
+            <div className="w-full h-full flex items-center justify-center">
+              <span className="font-mono text-[10px] text-muted uppercase tracking-widest">No image</span>
+            </div>
+          ) : (
+            <Image
+              src={item.coverImage}
+              alt={item.title}
+              fill
+              sizes="(max-width: 640px) 160px, 192px"
+              className="object-cover"
+              onError={() => setImgError(true)}
+            />
+          )}
         </div>
       </div>
 

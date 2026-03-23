@@ -5,17 +5,37 @@ import watchesRaw from "@/content/watches.json";
 import readsRaw from "@/content/reads.json";
 
 export function getExperiences(): IExperience[] {
-  return ExperienceArraySchema.parse(experiencesRaw);
+  try {
+    return ExperienceArraySchema.parse(experiencesRaw);
+  } catch (e) {
+    console.error("Failed to parse experiences.json:", e);
+    return [];
+  }
 }
 
 export function getListens(): IMediaItem[] {
-  return MediaItemArraySchema.parse(listensRaw);
+  try {
+    return MediaItemArraySchema.parse(listensRaw);
+  } catch (e) {
+    console.error("Failed to parse listens.json:", e);
+    return [];
+  }
 }
 
 export function getWatches(): IMediaItem[] {
-  return MediaItemArraySchema.parse(watchesRaw);
+  try {
+    return MediaItemArraySchema.parse(watchesRaw);
+  } catch (e) {
+    console.error("Failed to parse watches.json:", e);
+    return [];
+  }
 }
 
 export function getReads(): IMediaItem[] {
-  return MediaItemArraySchema.parse(readsRaw);
+  try {
+    return MediaItemArraySchema.parse(readsRaw);
+  } catch (e) {
+    console.error("Failed to parse reads.json:", e);
+    return [];
+  }
 }

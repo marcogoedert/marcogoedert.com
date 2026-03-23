@@ -14,11 +14,15 @@ export default function ReadPage() {
   return (
     <div className="flex flex-col items-center gap-12 text-center w-full">
       <AnimatedSection index={0}>
-        <div className="flex flex-col gap-4 w-full">
-          {items.map((item) => (
-            <BookCard key={item.id} item={item} />
-          ))}
-        </div>
+        {items.length === 0 ? (
+          <p className="font-mono text-sm text-muted">Nothing here yet.</p>
+        ) : (
+          <div className="flex flex-col gap-4 w-full">
+            {items.map((item) => (
+              <BookCard key={item.id} item={item} />
+            ))}
+          </div>
+        )}
       </AnimatedSection>
     </div>
   );

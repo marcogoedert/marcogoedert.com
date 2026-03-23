@@ -12,6 +12,14 @@ export function Shell({ children }: ShellProps) {
 
   return (
     <div className="min-h-dvh flex flex-col">
+      {/* Skip to content */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest focus:border focus:border-border"
+      >
+        Skip to content
+      </a>
+
       {/* Top-left: year */}
       <div className="fixed top-6 left-6 z-10">
         <span className="font-mono text-[11px] text-foreground/50">
@@ -25,7 +33,7 @@ export function Shell({ children }: ShellProps) {
       </div>
 
       {/* Main content */}
-      <main className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6">
+      <main id="main-content" className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6">
         {/* Title: full page width */}
         <SiteTitle />
         {/* Content: constrained */}

@@ -32,6 +32,7 @@ const fouc = `(function(){
 })();`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marcogoedert.com"),
   title: {
     default: "Marco Goedert",
     template: "%s | Marco Goedert",

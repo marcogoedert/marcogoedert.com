@@ -34,18 +34,15 @@ export function CornerNav() {
         })}
       </div>
 
-      {/* Mobile: rotated strip on right edge, bottom-aligned */}
-      <div
-        className="flex md:hidden fixed right-0 bottom-6 flex-row gap-3 pr-2 z-10"
-        style={{ writingMode: "vertical-rl" }}
-      >
+      {/* Mobile: vertical column at bottom-right, same pattern as desktop */}
+      <div className="flex md:hidden fixed right-4 bottom-6 flex-col items-end gap-1 z-10">
         {ROUTES.map(({ href, label }) => {
           const isActive = pathname === href;
           return (
             <Link
               key={href}
               href={href}
-              className={`font-mono text-[9px] uppercase tracking-widest transition-colors py-1 drop-shadow-md ${
+              className={`font-mono text-[11px] uppercase tracking-widest transition-colors py-1 drop-shadow-md ${
                 isActive
                   ? "text-foreground underline underline-offset-2"
                   : "text-foreground hover:text-foreground/70"

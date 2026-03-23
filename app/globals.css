@@ -39,6 +39,13 @@ body {
   color: rgb(var(--color-text));
 }
 
+/* ── Focus styles ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-text));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* ── Cursor blink animation ──────────────────────────────── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
