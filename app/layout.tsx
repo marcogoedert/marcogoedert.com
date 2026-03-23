@@ -33,9 +33,9 @@ const fouc = `(function(){
 export const metadata: Metadata = {
   title: {
     default: "Marco Goedert",
-    template: "%s — Marco Goedert",
+    template: "%s | Marco Goedert",
   },
-  description: "Software engineer. Updated occasionally.",
+  description: "Marco Goedert's personal website. Software engineer. Updated occasionally.",
   openGraph: {
     siteName: "Marco Goedert",
     locale: "en_US",

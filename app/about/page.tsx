@@ -14,11 +14,10 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col items-center gap-12 text-center w-full">
       <AnimatedSection index={0}>
-        <p className="text-muted leading-relaxed max-w-prose">
-          Software engineer with experience designing, building, and evolving
-          production systems across frontend, backend, and infrastructure layers.
-          Currently at TELUS Digital, building the AQM platform with React,
-          Next.js, and TypeScript.
+        <p className="text-muted leading-relaxed max-w-prose font-mono">
+          Software engineer with a thing for fast, well-built web experiences.
+          I design, build, and evolve production systems across the full stack.
+          Based in Porto Alegre, Brazil.
         </p>
       </AnimatedSection>
 
