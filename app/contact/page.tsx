@@ -10,7 +10,7 @@ import { CONTACT_LINKS } from "@/constants/links";
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col gap-12 w-full">
+    <div className="flex flex-col gap-12 w-full max-w-sm mx-auto">
       <AnimatedSection index={0}>
         <p className="font-mono text-sm text-muted">Feel free to reach out.</p>
       </AnimatedSection>

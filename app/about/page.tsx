@@ -12,7 +12,7 @@ export default function AboutPage() {
   const experiences = getExperiences();
 
   return (
-    <div className="flex flex-col items-center gap-12 text-center w-full">
+    <div className="flex flex-col items-center gap-12 text-center w-full max-w-2xl mx-auto">
       <AnimatedSection index={0}>
         <p className="text-muted leading-relaxed max-w-prose font-mono">
           Software engineer obsessed with the gap between &ldquo;it works&rdquo; and &ldquo;it&apos;s good.&rdquo;
