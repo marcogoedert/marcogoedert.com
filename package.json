@@ -1,9 +1,9 @@
 {
   "name": "marco-goedert",
   "private": true,
-  "description": "marcogoedert.com - Portfolio",
+  "description": "marcogoedert.com - Personal website",
   "version": "1.0.0",
-  "author": "Marco Goedert <maarcoagg@gmail.com>",
+  "author": "Marco Goedert <hello@marcogoedert.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
