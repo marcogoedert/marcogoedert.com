@@ -1,32 +1,90 @@
-## Marco Goedert
+# marco-goedert
 
-First, run the development server:
+Personal site — [marcogoedert.com](https://marcogoedert.com)
+
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06b6d4?logo=tailwindcss&logoColor=white)
+![Vitest](https://img.shields.io/badge/tested_with-Vitest-6e9f18?logo=vitest&logoColor=white)
+![Deployed on Vercel](https://img.shields.io/badge/Deployed_on-Vercel-black?logo=vercel&logoColor=white)
+
+## Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router, RSC) |
+| Language | TypeScript 5.9 |
+| Styling | Tailwind CSS 3.4 + CSS custom properties |
+| Animation | Framer Motion 12 |
+| Fonts | Geist, Geist Mono, Fraunces (via `next/font`) |
+| Content | JSON files validated with Zod |
+| Analytics | Vercel Analytics |
+| Testing | Vitest + Testing Library + jest-axe |
+| CI/CD | GitHub Actions + Vercel |
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Home |
+| `/about` | Bio + work experience |
+| `/contact` | Social links |
+| `/hear` | Music and listening |
+| `/watch` | Films and series |
+| `/read` | Books |
+
+## Features
+
+- **Light/dark theme** — cookie-based with FOUC prevention via inline `<script>` in `<head>`
+- **Page transitions** — Framer Motion animated route changes
+- **File-based content** — `content/*.json` with Zod schemas, no CMS
+- **Media CLI** — `npm run media` interactive terminal tool to add/edit entries in `content/`
+- **SEO** — dynamic metadata, OG image, `sitemap.ts`, `robots.ts`
+- **Accessibility** — semantic HTML, keyboard navigation, axe-tested components
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm install
+npm run dev       # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev        # dev server
+npm run build      # production build
+npm run lint       # ESLint
+npm run format     # Prettier check
+npm run test       # Vitest (single run)
+npm run test:watch # Vitest (watch mode)
+npm run media      # interactive CLI to manage content JSON files
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Project structure
 
-## Learn More
+```
+app/                    # Next.js App Router pages
+  (about|contact|hear|read|watch)/page.tsx
+  layout.tsx            # root layout — theme FOUC script, Shell, PageTransition
+  globals.css           # CSS custom properties (light/dark schemes)
 
-To learn more about Next.js, take a look at the following resources:
+components/
+  layout/               # Shell, PageTransition, AnimatedSection
+  nav/                  # TopNav, CornerNav
+  sections/             # WorkExperienceList, SocialLinks, ContactRow
+  ui/                   # Card, BookCard
+  ThemeToggle.tsx
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+content/                # JSON data files (experiences, projects, media lists)
+hooks/                  # useColorScheme, useSpotlight
+lib/                    # content loaders, Zod schemas
+scripts/                # media CLI
+.github/workflows/      # release.yml — auto patch version bump on merge to main
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Deployed on Vercel. Every push to `main`:
+1. Vercel builds and deploys automatically
+2. GitHub Actions bumps the patch version (`npm version patch`) and pushes a `chore: release vX.Y.Z` tag

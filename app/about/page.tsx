@@ -5,17 +5,17 @@ import { getExperiences } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Software engineer with experience across frontend, backend, and infrastructure. Currently at TELUS Digital.",
+  description: "Software engineer obsessed with the gap between 'it works' and 'it's good.' Full stack, based in Porto Alegre, Brazil.",
 };
 
 export default function AboutPage() {
   const experiences = getExperiences();
 
   return (
-    <div className="flex flex-col items-center gap-12 text-center w-full">
+    <div className="flex flex-col items-center gap-12 text-center w-full max-w-2xl mx-auto">
       <AnimatedSection index={0}>
         <p className="text-muted leading-relaxed max-w-prose font-mono">
-          Software engineer with a thing for fast, well-built web experiences.
+          Software engineer obsessed with the gap between &ldquo;it works&rdquo; and &ldquo;it&apos;s good.&rdquo;
           I design, build, and evolve production systems across the full stack.
           Based in Porto Alegre, Brazil.
         </p>

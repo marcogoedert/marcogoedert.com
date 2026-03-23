@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
+import { axe } from "jest-axe";
 import { Card } from "./Card";
 import type { IMediaItem } from "@/lib/schemas";
 
@@ -58,5 +59,23 @@ describe("Card", () => {
     fireEvent.mouseEnter(card, { clientX: 50, clientY: 100 });
     expect(card.style.getPropertyValue("--mouse-x")).toBe("25%");
     expect(card.style.getPropertyValue("--mouse-y")).toBe("50%");
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(<Card item={ITEM} aspectRatio="1/1" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("wraps in a link when url is provided", () => {
+    render(<Card item={{ ...ITEM, url: "https://example.com" }} aspectRatio="1/1" />);
+    const link = screen.getByRole("link");
+    expect((link as HTMLAnchorElement).href).toContain("https://example.com");
+  });
+
+  it("shows placeholder on image error", () => {
+    const { container } = render(<Card item={ITEM} aspectRatio="1/1" />);
+    const img = container.querySelector("img");
+    if (img) fireEvent.error(img);
+    expect(screen.getByText("No image")).toBeDefined();
   });
 });
