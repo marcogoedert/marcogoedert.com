@@ -26,7 +26,7 @@ export function TopNav() {
             className={`font-mono text-[11px] uppercase tracking-widest transition-colors py-1 ${
               isActive
                 ? "text-foreground underline underline-offset-2"
-                : "text-foreground/50 hover:text-foreground"
+                : "text-foreground hover:text-foreground/70"
             }`}
           >
             {label}

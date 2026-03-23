@@ -6,6 +6,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: ["selector", "[data-color-scheme='dark']"],
   theme: {
     screens: {
       xs: "450px",
@@ -16,11 +17,11 @@ const config: Config = {
       "2xl": "1536px",
     },
     colors: {
-      background: "var(--color-bg)",
-      foreground: "var(--color-text)",
-      muted: "var(--color-text-muted)",
-      border: "var(--color-border)",
-      surface: "var(--color-surface)",
+      background: "rgb(var(--color-bg) / <alpha-value>)",
+      foreground: "rgb(var(--color-text) / <alpha-value>)",
+      muted: "rgb(var(--color-text-muted) / <alpha-value>)",
+      border: "rgb(var(--color-border) / <alpha-value>)",
+      surface: "rgb(var(--color-surface) / <alpha-value>)",
       transparent: "transparent",
       current: "currentColor",
     },

@@ -15,7 +15,7 @@ export function CornerNav() {
   return (
     <nav aria-label="Section navigation">
       {/* Desktop: vertical column at bottom-right */}
-      <div className="hidden md:flex flex-col items-end space-y-1 self-end ml-auto p-0 md:pt-4">
+      <div className="hidden md:flex flex-col items-end space-y-1">
         {ROUTES.map(({ href, label }) => {
           const isActive = pathname === href;
           return (
@@ -25,7 +25,7 @@ export function CornerNav() {
               className={`font-mono text-[11px] uppercase tracking-widest transition-colors py-1 ${
                 isActive
                   ? "text-foreground underline underline-offset-2"
-                  : "text-foreground/50 hover:text-foreground"
+                  : "text-foreground hover:text-foreground/70"
               }`}
             >
               {label}
@@ -48,7 +48,7 @@ export function CornerNav() {
               className={`font-mono text-[9px] uppercase tracking-widest transition-colors py-1 drop-shadow-md ${
                 isActive
                   ? "text-foreground underline underline-offset-2"
-                  : "text-foreground/50 hover:text-foreground"
+                  : "text-foreground hover:text-foreground/70"
               }`}
             >
               {label}

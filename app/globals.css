@@ -5,20 +5,20 @@
 /* ── Light theme ─────────────────────────────────────────── */
 :root,
 [data-color-scheme="light"] {
-  --color-bg: #ffffff;
-  --color-text: #111111;
-  --color-text-muted: #6b7280;
-  --color-border: #d1d5db;
-  --color-surface: #f3f4f6;
+  --color-bg: 255 255 255;
+  --color-text: 17 17 17;
+  --color-text-muted: 107 114 128;
+  --color-border: 209 213 219;
+  --color-surface: 243 244 246;
 }
 
 /* ── Dark theme ──────────────────────────────────────────── */
 [data-color-scheme="dark"] {
-  --color-bg: #0a0a0a;
-  --color-text: #f0f0f0;
-  --color-text-muted: #808080;
-  --color-border: #222222;
-  --color-surface: #111111;
+  --color-bg: 10 10 10;
+  --color-text: 240 240 240;
+  --color-text-muted: 128 128 128;
+  --color-border: 34 34 34;
+  --color-surface: 17 17 17;
 }
 
 /* ── Base reset ──────────────────────────────────────────── */
@@ -35,8 +35,8 @@ html {
 
 body {
   font-family: var(--font-geist), sans-serif;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
 }
 
 /* ── Cursor blink animation ──────────────────────────────── */
