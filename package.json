@@ -2,7 +2,7 @@
   "name": "marco-goedert",
   "private": true,
   "description": "marcogoedert.com - Portfolio",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Marco Goedert <maarcoagg@gmail.com>",
   "scripts": {
     "dev": "next dev",
