@@ -13,10 +13,7 @@ export function TopNav() {
   const pathname = usePathname();
 
   return (
-    <nav
-      aria-label="Top navigation"
-      className="flex flex-col items-end gap-1"
-    >
+    <nav aria-label="Top navigation" className="flex flex-col items-end gap-1">
       {ROUTES.map(({ href, label }) => {
         const isActive = pathname === href;
         return (

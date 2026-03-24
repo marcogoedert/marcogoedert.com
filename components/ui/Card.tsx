@@ -21,11 +21,16 @@ export function Card({ item, aspectRatio }: CardProps) {
       className="relative rounded-sm overflow-hidden bg-surface cursor-default spotlight-card w-full"
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
     >
-      {/* Cover image — container dimensions locked by aspect-ratio; fill image is out-of-flow to prevent CLS */}
-      <div className="relative overflow-hidden w-full bg-surface" style={{ aspectRatio }}>
+      {/* Cover image: container dimensions locked by aspect-ratio; fill image is out-of-flow to prevent CLS */}
+      <div
+        className="relative overflow-hidden w-full bg-surface"
+        style={{ aspectRatio }}
+      >
         {imgError ? (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-mono text-[10px] text-muted uppercase tracking-widest">No image</span>
+            <span className="font-mono text-[10px] text-muted uppercase tracking-widest">
+              No image
+            </span>
           </div>
         ) : (
           <Image
@@ -44,20 +49,32 @@ export function Card({ item, aspectRatio }: CardProps) {
         {item.albumName ? (
           <>
             <div className="flex items-baseline justify-between gap-2">
-              <p className="text-foreground text-sm font-semibold truncate">{item.title}</p>
+              <p className="text-foreground text-sm font-semibold truncate">
+                {item.title}
+              </p>
               {item.duration && (
-                <p className="font-mono text-xs text-muted shrink-0">{item.duration}</p>
+                <p className="font-mono text-xs text-muted shrink-0">
+                  {item.duration}
+                </p>
               )}
             </div>
-            <p className="text-foreground text-xs text-center truncate mt-1">{item.creator}</p>
+            <p className="text-foreground text-xs text-center truncate mt-1">
+              {item.creator}
+            </p>
             {item.albumName !== item.title && (
-              <p className="text-muted text-xs text-center truncate">{item.albumName}</p>
+              <p className="text-muted text-xs text-center truncate">
+                {item.albumName}
+              </p>
             )}
           </>
         ) : (
           <>
-            <p className="text-foreground text-sm font-medium truncate">{item.title}</p>
-            <p className="font-mono text-xs text-muted uppercase tracking-wider truncate mt-1">{item.creator}</p>
+            <p className="text-foreground text-sm font-medium truncate">
+              {item.title}
+            </p>
+            <p className="font-mono text-xs text-muted uppercase tracking-wider truncate mt-1">
+              {item.creator}
+            </p>
           </>
         )}
         {item.note && (
@@ -68,8 +85,15 @@ export function Card({ item, aspectRatio }: CardProps) {
   );
 
   return item.url ? (
-    <Link href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+    <Link
+      href={item.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block"
+    >
       {inner}
     </Link>
-  ) : inner;
+  ) : (
+    inner
+  );
 }

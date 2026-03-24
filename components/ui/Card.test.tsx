@@ -39,8 +39,15 @@ describe("Card", () => {
 
     // Mock getBoundingClientRect
     card.getBoundingClientRect = () => ({
-      left: 0, top: 0, width: 200, height: 200,
-      right: 200, bottom: 200, x: 0, y: 0, toJSON: () => {},
+      left: 0,
+      top: 0,
+      width: 200,
+      height: 200,
+      right: 200,
+      bottom: 200,
+      x: 0,
+      y: 0,
+      toJSON: () => {},
     });
 
     fireEvent.mouseMove(card, { clientX: 100, clientY: 50 });
@@ -53,8 +60,15 @@ describe("Card", () => {
     const { container } = render(<Card item={ITEM} aspectRatio="1/1" />);
     const card = container.firstChild as HTMLElement;
     card.getBoundingClientRect = () => ({
-      left: 0, top: 0, width: 200, height: 200,
-      right: 200, bottom: 200, x: 0, y: 0, toJSON: () => {},
+      left: 0,
+      top: 0,
+      width: 200,
+      height: 200,
+      right: 200,
+      bottom: 200,
+      x: 0,
+      y: 0,
+      toJSON: () => {},
     });
     fireEvent.mouseEnter(card, { clientX: 50, clientY: 100 });
     expect(card.style.getPropertyValue("--mouse-x")).toBe("25%");
@@ -67,7 +81,9 @@ describe("Card", () => {
   });
 
   it("wraps in a link when url is provided", () => {
-    render(<Card item={{ ...ITEM, url: "https://example.com" }} aspectRatio="1/1" />);
+    render(
+      <Card item={{ ...ITEM, url: "https://example.com" }} aspectRatio="1/1" />,
+    );
     const link = screen.getByRole("link");
     expect((link as HTMLAnchorElement).href).toContain("https://example.com");
   });

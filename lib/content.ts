@@ -1,4 +1,9 @@
-import { ExperienceArraySchema, MediaItemArraySchema, type IExperience, type IMediaItem } from "./schemas";
+import {
+  ExperienceArraySchema,
+  MediaItemArraySchema,
+  type IExperience,
+  type IMediaItem,
+} from "./schemas";
 import experiencesRaw from "@/content/experiences.json";
 import listensRaw from "@/content/listens.json";
 import watchesRaw from "@/content/watches.json";

@@ -49,7 +49,7 @@ describe("useColorScheme", () => {
     mockMatchMedia(true);
     renderHook(() => useColorScheme());
     expect(document.documentElement.getAttribute("data-color-scheme")).toBe(
-      "dark"
+      "dark",
     );
   });
 
@@ -74,7 +74,7 @@ describe("useColorScheme", () => {
     const { result } = renderHook(() => useColorScheme());
     act(() => result.current.toggleColorScheme());
     expect(document.documentElement.getAttribute("data-color-scheme")).toBe(
-      "dark"
+      "dark",
     );
   });
 

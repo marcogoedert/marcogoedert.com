@@ -11,7 +11,7 @@ export function Shell({ children }: ShellProps) {
   const year = new Date().getFullYear();
 
   return (
-    <div className="min-h-dvh flex flex-col">
+    <div className="min-h-dvh bg-background text-foreground p-6 sm:p-8 flex flex-col relative">
       {/* Skip to content */}
       <a
         href="#main-content"
@@ -22,7 +22,7 @@ export function Shell({ children }: ShellProps) {
 
       {/* Top-left: year */}
       <div className="fixed top-6 left-6 z-10">
-        <span className="font-mono text-[11px] text-foreground/50">
+        <span className="[writing-mode:vertical-rl] rotate-180 lg:transform-none lg:[writing-mode:horizontal-tb] font-mono text-[11px] text-foreground/50">
           {year}
         </span>
       </div>
@@ -33,7 +33,10 @@ export function Shell({ children }: ShellProps) {
       </div>
 
       {/* Main content */}
-      <main id="main-content" className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6">
+      <main
+        id="main-content"
+        className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6 md:px-8"
+      >
         {/* Title: full page width */}
         <SiteTitle />
         {/* Content: constrained */}
@@ -43,7 +46,7 @@ export function Shell({ children }: ShellProps) {
       </main>
 
       {/* Sticky footer: editorial note left, section nav right */}
-      <footer className="flex justify-between sticky bottom-8 h-0 z-10 px-6">
+      <footer className="flex justify-between sticky bottom-8 h-0 z-10 font-mono">
         <div className="hidden lg:block w-1/6 self-end">
           <p className="font-mono text-xs italic text-foreground/40">
             {EDITORIAL_NOTE}
