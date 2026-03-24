@@ -14,7 +14,7 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
-describe("run — argument parsing", () => {
+describe("run: argument parsing", () => {
   it("prints usage and exits 1 on unknown subcommand", async () => {
     await expect(run(["unknowncmd"])).rejects.toThrow("process.exit(1)")
     expect(process.exit).toHaveBeenCalledWith(1)

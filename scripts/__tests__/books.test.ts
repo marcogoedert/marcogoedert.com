@@ -57,9 +57,9 @@ describe("parseBookResults", () => {
     expect(warnings[0]).toMatch(/cover/i)
   })
 
-  it("formats select option label as 'Title — Author (Year)'", () => {
+  it("formats select option label as 'Title by Author (Year)'", () => {
     const result = parseBookResults([item])
-    expect(result[0].label).toBe("Tomorrow, and Tomorrow, and Tomorrow — Gabrielle Zevin (2022)")
+    expect(result[0].label).toBe("Tomorrow, and Tomorrow, and Tomorrow by Gabrielle Zevin (2022)")
   })
 
   it("does not include a url field", () => {

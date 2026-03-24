@@ -5,7 +5,7 @@ import { detectUrl } from "../lib/detect"
 const UNSUPPORTED = "Unsupported URL format. Supported: open.spotify.com/album/..., open.spotify.com/track/..., goodreads.com/book/show/..., imdb.com/title/tt..."
 const SPOTIFY_ONLY = "Only Spotify album and track URLs are supported (open.spotify.com/album/..., open.spotify.com/track/...)"
 
-describe("detectUrl — Spotify", () => {
+describe("detectUrl: Spotify", () => {
   it("detects album URL, sets id to album ID and spotifyType to album", () => {
     const result = detectUrl("https://open.spotify.com/album/2lIZef4lzdvZkiiCzvPKj7")
     expect(result).toEqual({
@@ -74,7 +74,7 @@ describe("detectUrl — Spotify", () => {
   })
 })
 
-describe("detectUrl — Goodreads", () => {
+describe("detectUrl: Goodreads", () => {
   it("detects dot-format URL", () => {
     const result = detectUrl("https://www.goodreads.com/book/show/1536545.The_Likeness")
     expect(result).toEqual({
@@ -114,7 +114,7 @@ describe("detectUrl — Goodreads", () => {
   })
 })
 
-describe("detectUrl — IMDB", () => {
+describe("detectUrl: IMDB", () => {
   it("detects IMDB title URL, sets id to tt ID", () => {
     const result = detectUrl("https://www.imdb.com/title/tt11280740/")
     expect(result).toEqual({
@@ -146,7 +146,7 @@ describe("detectUrl — IMDB", () => {
   })
 })
 
-describe("detectUrl — unsupported", () => {
+describe("detectUrl: unsupported", () => {
   it("rejects unknown domain", () => {
     const result = detectUrl("https://example.com/something")
     expect(result).toEqual({ ok: false, error: UNSUPPORTED })

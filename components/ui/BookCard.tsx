@@ -20,7 +20,7 @@ export function BookCard({ item }: BookCardProps) {
       className="flex flex-col sm:flex-row border border-border overflow-hidden bg-surface spotlight-card cursor-default"
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
     >
-      {/* Cover image — mobile: centered on top; desktop: fixed width on left */}
+      {/* Cover image - mobile: centered on top; desktop: fixed width on left */}
       <div className="flex justify-center sm:block sm:flex-shrink-0 sm:w-48 pt-4 sm:pt-0">
         <div className="relative w-40 sm:w-full overflow-hidden bg-surface" style={{ aspectRatio: "2/3" }}>
           {imgError ? (

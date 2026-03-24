@@ -1,6 +1,6 @@
 # marco-goedert
 
-Personal site — [marcogoedert.com](https://marcogoedert.com)
+Personal site: [marcogoedert.com](https://marcogoedert.com)
 
 ![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript&logoColor=white)
@@ -35,12 +35,12 @@ Personal site — [marcogoedert.com](https://marcogoedert.com)
 
 ## Features
 
-- **Light/dark theme** — cookie-based with FOUC prevention via inline `<script>` in `<head>`
-- **Page transitions** — Framer Motion animated route changes
-- **File-based content** — `content/*.json` with Zod schemas, no CMS
-- **Media CLI** — `npm run media` interactive terminal tool to add/edit entries in `content/`
-- **SEO** — dynamic metadata, OG image, `sitemap.ts`, `robots.ts`
-- **Accessibility** — semantic HTML, keyboard navigation, axe-tested components
+- **Light/dark theme**: cookie-based with FOUC prevention via inline `<script>` in `<head>`
+- **Page transitions**: Framer Motion animated route changes
+- **File-based content**: `content/*.json` with Zod schemas, no CMS
+- **Media CLI**: `npm run media` interactive terminal tool to add/edit entries in `content/`
+- **SEO**: dynamic metadata, OG image, `sitemap.ts`, `robots.ts`
+- **Accessibility**: semantic HTML, keyboard navigation, axe-tested components
 
 ## Getting started
 
@@ -66,7 +66,7 @@ npm run media      # interactive CLI to manage content JSON files
 ```
 app/                    # Next.js App Router pages
   (about|contact|hear|read|watch)/page.tsx
-  layout.tsx            # root layout — theme FOUC script, Shell, PageTransition
+  layout.tsx            # root layout: theme FOUC script, Shell, PageTransition
   globals.css           # CSS custom properties (light/dark schemes)
 
 components/
@@ -80,7 +80,7 @@ content/                # JSON data files (experiences, projects, media lists)
 hooks/                  # useColorScheme, useSpotlight
 lib/                    # content loaders, Zod schemas
 scripts/                # media CLI
-.github/workflows/      # release.yml — auto patch version bump on merge to main
+.github/workflows/      # release.yml: auto patch version bump on merge to main
 ```
 
 ## Deployment

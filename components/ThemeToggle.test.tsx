@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import ThemeToggle from "./ThemeToggle";
 
-// Mock useColorScheme — we're testing the component UI, not the hook
+// Mock useColorScheme: testing the component UI, not the hook
 vi.mock("../hooks/useColorScheme", () => ({
   useColorScheme: vi.fn(),
 }));
