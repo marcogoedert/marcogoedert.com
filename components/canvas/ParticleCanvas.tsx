@@ -14,7 +14,9 @@ export function ParticleCanvas() {
 
     // Read from DOM attribute on each frame so theme changes apply without re-init
     function isDark() {
-      return document.documentElement.getAttribute("data-color-scheme") === "dark";
+      return (
+        document.documentElement.getAttribute("data-color-scheme") === "dark"
+      );
     }
     function getRgb() {
       return isDark() ? "255,255,255" : "0,0,0";
@@ -23,11 +25,19 @@ export function ParticleCanvas() {
     let width = 0;
     let height = 0;
     let animFrameId: number;
-    const mouse = { x: undefined as number | undefined, y: undefined as number | undefined, radius: 250 };
+    const mouse = {
+      x: undefined as number | undefined,
+      y: undefined as number | undefined,
+      radius: 250,
+    };
 
     class Particle {
-      x: number; y: number; vx: number; vy: number;
-      radius: number; baseAlpha: number;
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      baseAlpha: number;
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
@@ -68,7 +78,14 @@ export function ParticleCanvas() {
       ctx!.clearRect(0, 0, width, height);
       if (mouse.x !== undefined && mouse.y !== undefined) {
         ctx!.beginPath();
-        const g = ctx!.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, mouse.radius);
+        const g = ctx!.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          0,
+          mouse.x,
+          mouse.y,
+          mouse.radius,
+        );
         g.addColorStop(0, `rgba(${getRgb()},${isDark() ? 0.03 : 0.015})`);
         g.addColorStop(0.5, `rgba(${getRgb()},${isDark() ? 0.01 : 0.005})`);
         g.addColorStop(1, `rgba(${getRgb()},0)`);
@@ -111,10 +128,24 @@ export function ParticleCanvas() {
       animFrameId = requestAnimationFrame(animate);
     }
 
-    const onMouseMove = (e: MouseEvent) => { mouse.x = e.clientX; mouse.y = e.clientY; };
-    const onMouseOut = () => { mouse.x = undefined; mouse.y = undefined; };
-    const onTouchMove = (e: TouchEvent) => { if (e.touches.length > 0) { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; } };
-    const onTouchEnd = () => { mouse.x = undefined; mouse.y = undefined; };
+    const onMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+    const onMouseOut = () => {
+      mouse.x = undefined;
+      mouse.y = undefined;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    };
+    const onTouchEnd = () => {
+      mouse.x = undefined;
+      mouse.y = undefined;
+    };
 
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouseMove);
