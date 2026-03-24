@@ -1,5 +1,5 @@
 {
-  "name": "marco-goedert",
+  "name": "marcogoedert.com",
   "private": true,
   "description": "marcogoedert.com - Personal website",
   "version": "1.0.6",
@@ -11,8 +11,7 @@
     "lint": "eslint .",
     "format": "prettier --check \"./**/*.{js,jsx,ts,tsx}\"",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "media": "tsx scripts/media.ts"
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -23,7 +22,6 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@inquirer/prompts": "^8.3.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -33,7 +31,6 @@
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.27",
-    "dotenv": "^17.3.1",
     "eslint": "^9.39.4",
     "eslint-config-next": "^15.5.13",
     "eslint-config-prettier": "^10.1.8",
@@ -42,7 +39,6 @@
     "postcss": "^8.5.8",
     "prettier": "^3.8.1",
     "tailwindcss": "^3.4.17",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"
   }
