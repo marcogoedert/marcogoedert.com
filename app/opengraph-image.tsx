@@ -40,6 +40,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "row",
           alignItems: "baseline",
+          gap: "0.25em",
           margin: 0,
           lineHeight: 1,
         }}
@@ -47,18 +48,18 @@ export default async function Image() {
         <span
           style={{
             color: "#0a0a0a",
-            fontSize: 96,
+            fontSize: 120,
             fontWeight: 400,
             fontStyle: "normal",
             fontFamily: "Fraunces",
           }}
         >
-          {"Marco "}
+          Marco
         </span>
         <span
           style={{
             color: "#0a0a0a",
-            fontSize: 96,
+            fontSize: 120,
             fontWeight: 400,
             fontStyle: "italic",
             fontFamily: "Fraunces",
