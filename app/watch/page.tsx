@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/layout/AnimatedSection";
+import { Card } from "@/components/ui/Card";
+import { getWatches } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "WHAT I WATCH",
   description: "Movies and shows Marco has been watching lately.",
 };
-import { Card } from "@/components/ui/Card";
-import { getWatches } from "@/lib/content";
 
 export default function WatchPage() {
   const items = getWatches();

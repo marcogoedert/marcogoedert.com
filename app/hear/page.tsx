@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/layout/AnimatedSection";
+import { Card } from "@/components/ui/Card";
+import { getListens } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "WHAT I HEAR",
   description: "Albums and songs Marco has been listening to lately.",
 };
-import { Card } from "@/components/ui/Card";
-import { getListens } from "@/lib/content";
 
 export default function HearPage() {
   const items = getListens();
