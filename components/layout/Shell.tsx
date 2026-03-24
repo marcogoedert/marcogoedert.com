@@ -33,7 +33,10 @@ export function Shell({ children }: ShellProps) {
       </div>
 
       {/* Main content */}
-      <main id="main-content" className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6 md:px-8">
+      <main
+        id="main-content"
+        className="flex-grow flex flex-col items-center w-full pt-24 md:pt-32 pb-16 gap-12 px-6 md:px-8"
+      >
         {/* Title: full page width */}
         <SiteTitle />
         {/* Content: constrained */}

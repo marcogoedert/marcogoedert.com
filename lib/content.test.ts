@@ -10,7 +10,9 @@ describe("getExperiences", () => {
     expect(typeof first.company).toBe("string");
     expect(typeof first.role).toBe("string");
     expect(typeof first.startDate).toBe("string");
-    expect(first.endDate === null || typeof first.endDate === "string").toBe(true);
+    expect(first.endDate === null || typeof first.endDate === "string").toBe(
+      true,
+    );
   });
 });
 

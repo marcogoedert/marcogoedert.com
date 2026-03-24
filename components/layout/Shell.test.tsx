@@ -30,7 +30,11 @@ describe("Shell", () => {
   });
 
   it("renders children in the main content area", () => {
-    render(<Shell><div>page content</div></Shell>);
+    render(
+      <Shell>
+        <div>page content</div>
+      </Shell>,
+    );
     expect(screen.getByText("page content")).toBeDefined();
   });
 });

@@ -1,10 +1,7 @@
 {
   "id": "2lIZef4lzdvZkiiCzvPKj7",
   "name": "BRAT",
-  "artists": [
-    { "name": "Charli XCX" },
-    { "name": "Other Artist" }
-  ],
+  "artists": [{ "name": "Charli XCX" }, { "name": "Other Artist" }],
   "images": [
     { "url": "https://i.scdn.co/image/small", "width": 300, "height": 300 },
     { "url": "https://i.scdn.co/image/medium", "width": 640, "height": 640 },

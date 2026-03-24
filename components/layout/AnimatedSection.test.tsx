@@ -10,7 +10,7 @@ describe("AnimatedSection", () => {
 
   it("accepts an index prop without error", () => {
     const { container } = render(
-      <AnimatedSection index={3}>Content</AnimatedSection>
+      <AnimatedSection index={3}>Content</AnimatedSection>,
     );
     expect(container.firstChild).toBeDefined();
   });

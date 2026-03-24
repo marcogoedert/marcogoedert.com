@@ -17,13 +17,17 @@ describe("TopNav", () => {
 
   it("About link points to /about", () => {
     render(<TopNav />);
-    const link = screen.getByRole("link", { name: /about/i }) as HTMLAnchorElement;
+    const link = screen.getByRole("link", {
+      name: /about/i,
+    }) as HTMLAnchorElement;
     expect(link.href).toContain("/about");
   });
 
   it("Contact link points to /contact", () => {
     render(<TopNav />);
-    const link = screen.getByRole("link", { name: /contact/i }) as HTMLAnchorElement;
+    const link = screen.getByRole("link", {
+      name: /contact/i,
+    }) as HTMLAnchorElement;
     expect(link.href).toContain("/contact");
   });
 

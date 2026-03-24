@@ -1,6 +1,10 @@
 {
   "movie_results": [
-    { "id": 693134, "title": "Dune: Part Two", "poster_path": "/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" }
+    {
+      "id": 693134,
+      "title": "Dune: Part Two",
+      "poster_path": "/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+    }
   ],
   "tv_results": []
 }

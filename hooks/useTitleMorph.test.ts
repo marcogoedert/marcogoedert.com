@@ -30,7 +30,7 @@ describe("useTitleMorph", () => {
   it("deletes to 'Marco' then types new title on navigation", () => {
     const { result, rerender } = renderHook(
       ({ target }: { target: string }) => useTitleMorph(target),
-      { initialProps: { target: "Marco Goedert" } }
+      { initialProps: { target: "Marco Goedert" } },
     );
 
     // Complete first load
@@ -52,7 +52,7 @@ describe("useTitleMorph", () => {
   it("cancels in-flight animation when target changes mid-morph", () => {
     const { result, rerender } = renderHook(
       ({ target }: { target: string }) => useTitleMorph(target),
-      { initialProps: { target: "Marco Goedert" } }
+      { initialProps: { target: "Marco Goedert" } },
     );
 
     act(() => vi.runAllTimers());
@@ -70,7 +70,7 @@ describe("useTitleMorph", () => {
 
   it("shows full title immediately when disabled", () => {
     const { result } = renderHook(() =>
-      useTitleMorph("Marco Goedert", { disabled: true })
+      useTitleMorph("Marco Goedert", { disabled: true }),
     );
     expect(result.current).toBe("Marco Goedert");
   });

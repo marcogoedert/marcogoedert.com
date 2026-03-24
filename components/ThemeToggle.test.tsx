@@ -33,7 +33,7 @@ describe("ThemeToggle", () => {
     });
     render(<ThemeToggle />);
     expect(
-      screen.getByRole("button", { name: /switch to dark/i })
+      screen.getByRole("button", { name: /switch to dark/i }),
     ).toBeDefined();
   });
 
@@ -44,7 +44,7 @@ describe("ThemeToggle", () => {
     });
     render(<ThemeToggle />);
     expect(
-      screen.getByRole("button", { name: /switch to light/i })
+      screen.getByRole("button", { name: /switch to light/i }),
     ).toBeDefined();
   });
 
