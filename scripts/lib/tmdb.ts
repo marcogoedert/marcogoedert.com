@@ -185,7 +185,8 @@ export async function searchAndSelectTmdb(
   const data = (await res.json()) as { results: TmdbMultiSearchResult[] };
 
   const items = data.results.filter(
-    (r) => r.media_type === "movie" || r.media_type === "tv",
+    (r): r is TmdbMultiSearchResult & { media_type: "movie" | "tv" } =>
+      r.media_type === "movie" || r.media_type === "tv",
   );
   if (items.length === 0) throw new Error(`No results found for '${query}'`);
 
