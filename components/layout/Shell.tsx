@@ -43,7 +43,7 @@ export function Shell({ children }: ShellProps) {
       </main>
 
       {/* Sticky footer: editorial note left, section nav right */}
-      <footer className="flex justify-between sticky bottom-0 h-0 z-10 font-mono">
+      <footer className="flex justify-between sticky bottom-8 h-0 z-10 font-mono">
         <div className="hidden lg:block w-1/6 self-end">
           <p className="font-mono text-xs italic text-foreground/40">
             {EDITORIAL_NOTE}
