@@ -1,10 +1,15 @@
 // @vitest-environment node
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
 import {
   parseTmdbMovie,
   parseTmdbTv,
   formatTmdbSearchLabel,
+  fetchExternalIds,
 } from "../lib/tmdb";
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 import findMovie from "./fixtures/tmdb-find-movie.json";
 import findTv from "./fixtures/tmdb-find-tv.json";
 import creditsMovie from "./fixtures/tmdb-credits-movie.json";
@@ -146,5 +151,73 @@ describe("parseTmdbTv", () => {
     );
     expect(result.creator).toBe("");
     expect(warnings[0]).toMatch(/creator/i);
+  });
+});
+
+describe("fetchExternalIds", () => {
+  const apiKey = "fake-key";
+
+  it("returns imdb_id for a movie", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ imdb_id: "tt15239678" }),
+      }),
+    );
+    expect(await fetchExternalIds(693134, "movie", apiKey)).toBe("tt15239678");
+  });
+
+  it("returns imdb_id for a tv show", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ imdb_id: "tt11280740" }),
+      }),
+    );
+    expect(await fetchExternalIds(95396, "tv", apiKey)).toBe("tt11280740");
+  });
+
+  it("returns null when fetch fails", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false }));
+    expect(await fetchExternalIds(1, "movie", apiKey)).toBeNull();
+  });
+
+  it("returns null when imdb_id is null in response", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ imdb_id: null }),
+      }),
+    );
+    expect(await fetchExternalIds(1, "movie", apiKey)).toBeNull();
+  });
+
+  it("calls the correct endpoint for movie", async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ imdb_id: "tt1" }),
+    });
+    vi.stubGlobal("fetch", mockFetch);
+    await fetchExternalIds(42, "movie", apiKey);
+    expect(mockFetch).toHaveBeenCalledWith(
+      "https://api.themoviedb.org/3/movie/42/external_ids",
+      expect.objectContaining({ headers: expect.anything() }),
+    );
+  });
+
+  it("calls the correct endpoint for tv", async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ imdb_id: "tt1" }),
+    });
+    vi.stubGlobal("fetch", mockFetch);
+    await fetchExternalIds(99, "tv", apiKey);
+    expect(mockFetch).toHaveBeenCalledWith(
+      "https://api.themoviedb.org/3/tv/99/external_ids",
+      expect.objectContaining({ headers: expect.anything() }),
+    );
   });
 });

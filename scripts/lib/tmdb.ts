@@ -156,6 +156,23 @@ export async function fetchTmdbTitle(
   throw new Error(`No results found for ${imdbId}`);
 }
 
+export async function fetchExternalIds(
+  id: number,
+  mediaType: "movie" | "tv",
+  apiKey: string,
+): Promise<string | null> {
+  const endpoint =
+    mediaType === "movie"
+      ? `https://api.themoviedb.org/3/movie/${id}/external_ids`
+      : `https://api.themoviedb.org/3/tv/${id}/external_ids`;
+  const res = await fetch(endpoint, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+  });
+  if (!res.ok) return null;
+  const data = (await res.json()) as { imdb_id: string | null };
+  return data.imdb_id;
+}
+
 export async function searchAndSelectTmdb(
   query: string,
   apiKey: string,
@@ -168,7 +185,8 @@ export async function searchAndSelectTmdb(
   const data = (await res.json()) as { results: TmdbMultiSearchResult[] };
 
   const items = data.results.filter(
-    (r) => r.media_type === "movie" || r.media_type === "tv",
+    (r): r is TmdbMultiSearchResult & { media_type: "movie" | "tv" } =>
+      r.media_type === "movie" || r.media_type === "tv",
   );
   if (items.length === 0) throw new Error(`No results found for '${query}'`);
 
@@ -183,10 +201,13 @@ export async function searchAndSelectTmdb(
           })),
         });
 
+  const imdbId = await fetchExternalIds(chosen.id, chosen.media_type, apiKey);
   const originalUrl =
-    chosen.media_type === "movie"
-      ? `https://www.themoviedb.org/movie/${chosen.id}`
-      : `https://www.themoviedb.org/tv/${chosen.id}`;
+    imdbId != null
+      ? `https://www.imdb.com/title/${imdbId}/`
+      : chosen.media_type === "movie"
+        ? `https://www.themoviedb.org/movie/${chosen.id}`
+        : `https://www.themoviedb.org/tv/${chosen.id}`;
 
   if (chosen.media_type === "movie") {
     return fetchMovieDetails(
