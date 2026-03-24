@@ -40,7 +40,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "row",
           alignItems: "baseline",
-          gap: "0.25em",
+          gap: 24,
           margin: 0,
           lineHeight: 1,
         }}
