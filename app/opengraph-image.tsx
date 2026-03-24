@@ -24,31 +24,19 @@ export default async function Image() {
   return new ImageResponse(
     <div
       style={{
-        background: "#0a0a0a",
+        background: "#ffffff",
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: "24px",
+        gap: "48px",
       }}
     >
-      <p
-        style={{
-          color: "#606060",
-          fontSize: 22,
-          fontFamily: "monospace",
-          letterSpacing: "0.3em",
-          textTransform: "uppercase",
-          margin: 0,
-        }}
-      >
-        marcogoedert.com
-      </p>
       <h1
         style={{
-          color: "#f0f0f0",
+          color: "#0a0a0a",
           fontSize: 96,
           fontWeight: 400,
           fontStyle: "italic",
