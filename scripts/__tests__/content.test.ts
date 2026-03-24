@@ -127,7 +127,7 @@ describe("findDuplicateId", () => {
   })
 })
 
-describe("writeItems — atomic write", () => {
+describe("writeItems: atomic write", () => {
   it("writes JSON file successfully via rename", () => {
     writeItems("reads", [ITEM_RATED])
     const raw = fs.readFileSync(path.join(tmpDir, "content", "reads.json"), "utf-8")

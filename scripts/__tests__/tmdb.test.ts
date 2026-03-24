@@ -9,22 +9,22 @@ import tvDetails from "./fixtures/tmdb-tv-details.json"
 describe("formatTmdbSearchLabel", () => {
   it("formats a movie with release_date", () => {
     const item = { id: 1, media_type: "movie" as const, title: "Dune: Part Two", release_date: "2024-03-01", poster_path: null }
-    expect(formatTmdbSearchLabel(item)).toBe("Dune: Part Two — Movie (2024)")
+    expect(formatTmdbSearchLabel(item)).toBe("Dune: Part Two (Movie, 2024)")
   })
 
   it("formats a TV show with first_air_date", () => {
     const item = { id: 2, media_type: "tv" as const, name: "Severance", first_air_date: "2022-02-18", poster_path: null }
-    expect(formatTmdbSearchLabel(item)).toBe("Severance — TV Series (2022)")
+    expect(formatTmdbSearchLabel(item)).toBe("Severance (TV Series, 2022)")
   })
 
   it("falls back to ? when no date present", () => {
     const item = { id: 3, media_type: "movie" as const, title: "Some Film", poster_path: null }
-    expect(formatTmdbSearchLabel(item)).toBe("Some Film — Movie (?)")
+    expect(formatTmdbSearchLabel(item)).toBe("Some Film (Movie, ?)")
   })
 
   it("falls back to Unknown when no title or name", () => {
     const item = { id: 4, media_type: "tv" as const, poster_path: null }
-    expect(formatTmdbSearchLabel(item)).toBe("Unknown — TV Series (?)")
+    expect(formatTmdbSearchLabel(item)).toBe("Unknown (TV Series, ?)")
   })
 })
 

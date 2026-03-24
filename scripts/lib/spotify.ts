@@ -120,11 +120,11 @@ export async function searchAndSelectSpotify(
 
   const albumItems = (data.albums?.items ?? []).map((a) => {
     const parsed = parseSpotifyAlbum(a)
-    return { ...parsed, label: `${parsed.title} — ${parsed.creator} (album)` }
+    return { ...parsed, label: `${parsed.title} by ${parsed.creator} (album)` }
   })
   const trackItems = (data.tracks?.items ?? []).map((t) => {
     const parsed = parseSpotifyTrack(t)
-    return { ...parsed, label: `${parsed.title} — ${parsed.creator} (track)` }
+    return { ...parsed, label: `${parsed.title} by ${parsed.creator} (track)` }
   })
   const allItems = [...albumItems, ...trackItems]
 

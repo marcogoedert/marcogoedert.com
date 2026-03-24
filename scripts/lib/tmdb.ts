@@ -43,7 +43,7 @@ export function formatTmdbSearchLabel(item: TmdbMultiSearchResult): string {
   const title = item.title ?? item.name ?? "Unknown"
   const type = item.media_type === "movie" ? "Movie" : "TV Series"
   const year = (item.release_date ?? item.first_air_date ?? "").slice(0, 4) || "?"
-  return `${title} — ${type} (${year})`
+  return `${title} (${type}, ${year})`
 }
 
 export function parseTmdbMovie(

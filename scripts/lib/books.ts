@@ -5,7 +5,7 @@ export interface BookResult {
   creator: string
   publishedYear: number
   coverImage: string
-  label: string // "Title — Author (Year)" for select prompt
+  label: string // "Title by Author (Year)" for select prompt
 }
 
 export type BookResultWithUrl = BookResult & { url: string | null }
@@ -44,7 +44,7 @@ export function parseBookResults(
       coverImage = info.imageLinks.thumbnail.replace("zoom=1", "zoom=3")
     }
 
-    const label = `${title} — ${creator} (${publishedYear})`
+    const label = `${title} by ${creator} (${publishedYear})`
 
     return { title, creator, publishedYear, coverImage, label }
   })

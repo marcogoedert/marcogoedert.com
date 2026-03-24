@@ -21,7 +21,7 @@ export function Card({ item, aspectRatio }: CardProps) {
       className="relative rounded-sm overflow-hidden bg-surface cursor-default spotlight-card w-full"
       style={{ "--mouse-x": "50%", "--mouse-y": "50%" } as React.CSSProperties}
     >
-      {/* Cover image — container dimensions locked by aspect-ratio; fill image is out-of-flow to prevent CLS */}
+      {/* Cover image: container dimensions locked by aspect-ratio; fill image is out-of-flow to prevent CLS */}
       <div className="relative overflow-hidden w-full bg-surface" style={{ aspectRatio }}>
         {imgError ? (
           <div className="absolute inset-0 flex items-center justify-center">

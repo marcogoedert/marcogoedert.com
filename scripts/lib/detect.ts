@@ -19,7 +19,7 @@ export function detectUrl(rawUrl: string): DetectResult {
 
   if (url.hostname === "open.spotify.com") {
     const parts = url.pathname.split("/").filter(Boolean)
-    // Find album/track/playlist segment — handles locale prefix (e.g. /intl-pt/album/...)
+    // Find album/track/playlist segment: handles locale prefix (e.g. /intl-pt/album/...)
     const typeIdx = parts.findIndex((p) => p === "album" || p === "track" || p === "playlist")
     if (typeIdx === -1) return { ok: false, error: UNSUPPORTED_ERROR }
     const resourceType = parts[typeIdx]

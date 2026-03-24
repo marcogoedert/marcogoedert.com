@@ -103,7 +103,7 @@ async function addCommand(urlOrQuery?: string): Promise<void> {
     }
   }
 
-  console.log(`\nFound: ${fetched.title} — ${fetched.creator}`)
+  console.log(`\nFound: ${fetched.title} by ${fetched.creator}`)
   console.log(`Cover: ${fetched.coverImage || "(none)"}`)
   console.log()
 
@@ -170,7 +170,7 @@ async function editCommand(query: string): Promise<void> {
     chosen = await select({
       message: "Select entry:",
       choices: matches.map((m) => ({
-        name: `${m.entry.title} (${m.entry.id}) — ${m.file}`,
+        name: `${m.entry.title} (${m.entry.id}) in ${m.file}`,
         value: m,
       })),
     })
@@ -234,7 +234,7 @@ async function removeCommand(query: string): Promise<void> {
     chosen = await select({
       message: "Select entry:",
       choices: matches.map((m) => ({
-        name: `${m.entry.title} (${m.entry.id}) — ${m.file}`,
+        name: `${m.entry.title} (${m.entry.id}) in ${m.file}`,
         value: m,
       })),
     })
@@ -270,7 +270,7 @@ export async function run(args: string[]): Promise<void> {
   }
 }
 
-// File-level invocation — only runs when executed directly
+// File-level invocation: only runs when executed directly
 if (process.argv[1]?.endsWith("media.ts") || process.argv[1]?.endsWith("media.js")) {
   run(process.argv.slice(2)).catch((err: Error) => {
     console.error(err.message ?? err)
