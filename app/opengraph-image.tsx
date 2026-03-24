@@ -5,11 +5,14 @@ export const alt = "Marco Goedert — Software Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-async function loadFont(familyQuery: string, text: string): Promise<ArrayBuffer> {
+async function loadFont(
+  familyQuery: string,
+  text: string,
+): Promise<ArrayBuffer> {
   const params = new URLSearchParams({ family: familyQuery, text });
-  const css = await fetch(
-    `https://fonts.googleapis.com/css2?${params}`,
-  ).then((r) => r.text());
+  const css = await fetch(`https://fonts.googleapis.com/css2?${params}`).then(
+    (r) => r.text(),
+  );
   const url = css.match(/src: url\((.+?)\)/)?.[1];
   if (!url) throw new Error(`Font URL not found for ${familyQuery}`);
   return fetch(url).then((r) => r.arrayBuffer());
