@@ -32,75 +32,11 @@
     "note": null
   },
   {
-    "id": "fatestay-night",
-    "title": "Fate/stay night",
-    "creator": "Kinoko Nasu",
-    "coverImage": "https://image.tmdb.org/t/p/w500/x7nYPOveHhINREhTtwBHot9ersB.jpg",
-    "url": "https://www.themoviedb.org/tv/37858",
-    "note": null
-  },
-  {
-    "id": "paranoia-agent",
-    "title": "Paranoia Agent",
-    "creator": "Satoshi Kon",
-    "coverImage": "https://image.tmdb.org/t/p/w500/cQ6YiBTUlsKGm2mWa7mE9eZnlS2.jpg",
-    "url": "https://www.themoviedb.org/tv/9343",
-    "note": null
-  },
-  {
-    "id": "takopis-original-sin",
-    "title": "Takopi's Original Sin",
-    "creator": "Shinya Iino",
-    "coverImage": "https://image.tmdb.org/t/p/w500/xPXDVhVKt0XM34ihoUVMHtLYTw8.jpg",
-    "url": "https://www.themoviedb.org/tv/284445",
-    "note": null
-  },
-  {
     "id": "dan-da-dan",
     "title": "Dan Da Dan",
     "creator": "Yukinobu Tatsu",
     "coverImage": "https://image.tmdb.org/t/p/w500/6qfZAOEUFIrbUH3JvePclx1nXzz.jpg",
     "url": "https://www.themoviedb.org/tv/240411",
-    "note": null
-  },
-  {
-    "id": "gintama",
-    "title": "Gintama",
-    "creator": "Hideaki Sorachi",
-    "coverImage": "https://image.tmdb.org/t/p/w500/f7vK8pzZIqhyA8sYmBpWmp9Ae7.jpg",
-    "url": "https://www.themoviedb.org/tv/57041",
-    "note": null
-  },
-  {
-    "id": "solo-leveling",
-    "title": "Solo Leveling",
-    "creator": "Chugong",
-    "coverImage": "https://image.tmdb.org/t/p/w500/geCRueV3ElhRTr0xtJuEWJt6dJ1.jpg",
-    "url": "https://www.themoviedb.org/tv/127532",
-    "note": null
-  },
-  {
-    "id": "gachiakuta",
-    "title": "Gachiakuta",
-    "creator": "Kei Urana",
-    "coverImage": "https://image.tmdb.org/t/p/w500/jH78nLFrTU6aP7hY7KO6DZHFLoX.jpg",
-    "url": "https://www.themoviedb.org/tv/256721",
-    "note": null
-  },
-  {
-    "id": "lord-of-mysteries",
-    "title": "Lord of Mysteries",
-    "creator": "Cuttlefish That Loves Diving",
-    "coverImage": "https://image.tmdb.org/t/p/w500/c8fHePq3yTn3WvZd4hupkHwsjm5.jpg",
-    "url": "https://www.themoviedb.org/tv/232230",
-    "note": null
-  },
-  {
-    "id": "cowboy-bebop",
-    "title": "Cowboy Bebop",
-    "creator": "Hajime Yatate",
-    "coverImage": "https://image.tmdb.org/t/p/w500/xDiXDfZwC6XYC6fxHI1jl3A3Ill.jpg",
-    "url": "https://www.themoviedb.org/tv/30991",
     "note": null
   },
   {
@@ -112,43 +48,11 @@
     "note": null
   },
   {
-    "id": "nosferatu",
-    "title": "Nosferatu",
-    "creator": "Robert Eggers",
-    "coverImage": "https://image.tmdb.org/t/p/w500/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg",
-    "url": "https://www.themoviedb.org/movie/426063",
-    "note": null
-  },
-  {
-    "id": "monster",
-    "title": "Monster",
-    "creator": "Naoki Urasawa",
-    "coverImage": "https://image.tmdb.org/t/p/w500/n5XNKXnoXpoXyfiCtXHOf8q8PFM.jpg",
-    "url": "https://www.themoviedb.org/tv/30981",
-    "note": null
-  },
-  {
     "id": "the-pitt",
     "title": "The Pitt",
     "creator": "R. Scott Gemmill",
     "coverImage": "https://image.tmdb.org/t/p/w500/kvFSpESyBZMjaeOJDx7RS3P1jey.jpg",
     "url": "https://www.themoviedb.org/tv/250307",
-    "note": null
-  },
-  {
-    "id": "one-piece",
-    "title": "One Piece",
-    "creator": "Eiichiro Oda",
-    "coverImage": "https://image.tmdb.org/t/p/w500/uiIB9ctqZFbfRXXimtpmZb5dusi.jpg",
-    "url": "https://www.themoviedb.org/tv/37854",
-    "note": null
-  },
-  {
-    "id": "fatezero",
-    "title": "Fate/Zero",
-    "creator": "Gen Urobuchi",
-    "coverImage": "https://image.tmdb.org/t/p/w500/chUbHBiMX7buj8TzOEIjHHPCJfF.jpg",
-    "url": "https://www.themoviedb.org/tv/45845",
     "note": null
   },
   {
