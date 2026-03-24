@@ -11,7 +11,7 @@ export function Shell({ children }: ShellProps) {
   const year = new Date().getFullYear();
 
   return (
-    <div className="min-h-dvh bg-background text-foreground p-6 sm:p-8 flex flex-col relative">
+    <div className="min-h-dvh text-foreground p-6 sm:p-8 flex flex-col relative z-[1]">
       {/* Skip to content */}
       <a
         href="#main-content"
