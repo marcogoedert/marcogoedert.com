@@ -2,7 +2,7 @@
   "name": "marco-goedert",
   "private": true,
   "description": "marcogoedert.com - Personal website",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Marco Goedert <hello@marcogoedert.com>",
   "scripts": {
     "dev": "next dev",
