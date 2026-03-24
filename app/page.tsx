@@ -3,7 +3,6 @@ import { AnimatedSection } from "@/components/layout/AnimatedSection";
 
 export const metadata: Metadata = {
   title: "Marco Goedert",
-  description: "Software engineer. Personal site.",
 };
 
 export default function Home() {
