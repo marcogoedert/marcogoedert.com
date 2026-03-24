@@ -26,6 +26,17 @@ export default function AboutPage() {
       <AnimatedSection index={1} className="w-full">
         <WorkExperienceList experiences={experiences} />
       </AnimatedSection>
+
+      <AnimatedSection index={2}>
+        <a
+          href="/cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-[11px] uppercase tracking-widest text-muted hover:text-foreground transition-colors"
+        >
+          View Resume / CV →
+        </a>
+      </AnimatedSection>
     </div>
   );
 }
