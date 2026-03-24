@@ -22,7 +22,7 @@ export function Shell({ children }: ShellProps) {
 
       {/* Top-left: year */}
       <div className="fixed top-6 left-6 z-10">
-        <span className="font-mono text-[11px] text-foreground/50">
+        <span className="[writing-mode:vertical-rl] rotate-180 lg:transform-none lg:[writing-mode:horizontal-tb] font-mono text-[11px] text-foreground/50">
           {year}
         </span>
       </div>
