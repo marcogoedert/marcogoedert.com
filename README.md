@@ -80,12 +80,9 @@ components/
 content/                # JSON data files (experiences, projects, media lists)
 hooks/                  # useColorScheme, useSpotlight
 lib/                    # content loaders, Zod schemas
-.github/workflows/      # ci.yml: lint + test + build on PRs; release.yml: auto patch version bump on merge to main
+.github/workflows/      # ci.yml: lint + format + test + build on PRs (3 parallel jobs)
 ```
 
 ## Deployment
 
-Deployed on Vercel. Every push to `main`:
-
-1. Vercel builds and deploys automatically
-2. GitHub Actions bumps the patch version (`npm version patch`) and pushes a `chore: release vX.Y.Z` tag
+Deployed on Vercel. Every push to `main` triggers an automatic build and deployment.

@@ -2,7 +2,6 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-
 beforeEach(() => {
   vi.stubGlobal("requestAnimationFrame", vi.fn());
   vi.stubGlobal("cancelAnimationFrame", vi.fn());
