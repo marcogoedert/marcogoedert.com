@@ -1,10 +1,7 @@
 {
   "id": "4cOdK2wGLETKBW3PvgPWqT",
   "name": "Numb",
-  "artists": [
-    { "name": "Linkin Park" },
-    { "name": "Other Artist" }
-  ],
+  "artists": [{ "name": "Linkin Park" }, { "name": "Other Artist" }],
   "duration_ms": 194000,
   "album": {
     "name": "Meteora",

@@ -37,7 +37,8 @@ export const metadata: Metadata = {
     default: "Marco Goedert",
     template: "%s | Marco Goedert",
   },
-  description: "Marco Goedert's personal website. Software engineer. Updated occasionally.",
+  description:
+    "Marco Goedert's personal website. Software engineer. Updated occasionally.",
   openGraph: {
     siteName: "Marco Goedert",
     locale: "en_US",

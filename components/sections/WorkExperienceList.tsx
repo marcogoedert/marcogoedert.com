@@ -23,7 +23,9 @@ export function WorkExperienceList({ experiences }: WorkExperienceListProps) {
           }`}
         >
           <div>
-            <span className="block font-medium text-foreground">{exp.company}</span>
+            <span className="block font-medium text-foreground">
+              {exp.company}
+            </span>
             <span className="block text-sm text-muted">{exp.role}</span>
           </div>
           <span className="text-sm text-muted tabular-nums shrink-0 ml-4">

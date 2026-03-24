@@ -4,8 +4,18 @@ import { WorkExperienceList } from "./WorkExperienceList";
 import type { IExperience } from "@/lib/schemas";
 
 const EXPERIENCES: IExperience[] = [
-  { company: "TELUS Digital", role: "Software Engineer", startDate: "2022-01", endDate: null },
-  { company: "Acme Corp", role: "Junior Developer", startDate: "2020-03", endDate: "2021-12" },
+  {
+    company: "TELUS Digital",
+    role: "Software Engineer",
+    startDate: "2022-01",
+    endDate: null,
+  },
+  {
+    company: "Acme Corp",
+    role: "Junior Developer",
+    startDate: "2020-03",
+    endDate: "2021-12",
+  },
 ];
 
 describe("WorkExperienceList", () => {

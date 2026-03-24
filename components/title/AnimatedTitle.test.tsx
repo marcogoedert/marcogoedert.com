@@ -2,8 +2,18 @@ import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 
 vi.mock("next/link", () => ({
-  default: ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => (
-    <a href={href} className={className}>{children}</a>
+  default: ({
+    href,
+    children,
+    className,
+  }: {
+    href: string;
+    children: React.ReactNode;
+    className?: string;
+  }) => (
+    <a href={href} className={className}>
+      {children}
+    </a>
   ),
 }));
 
@@ -36,7 +46,7 @@ describe("AnimatedTitle", () => {
 
   it("shows full title immediately when disabled", () => {
     const { container } = render(
-      <AnimatedTitle target="Marco Goedert" disabled />
+      <AnimatedTitle target="Marco Goedert" disabled />,
     );
     const link = container.querySelector("a");
     const tailSpan = container.querySelectorAll("span[aria-hidden='true']")[1];

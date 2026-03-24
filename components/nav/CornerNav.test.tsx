@@ -7,7 +7,7 @@ describe("CornerNav", () => {
   it("renders hear, watch, and read links", () => {
     render(<CornerNav />);
     const links = screen.getAllByRole("link");
-    const labels = links.map(l => l.textContent);
+    const labels = links.map((l) => l.textContent);
     expect(labels).toContain("what i hear.");
     expect(labels).toContain("what i watch.");
     expect(labels).toContain("what i read.");

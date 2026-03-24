@@ -22,10 +22,15 @@ export function BookCard({ item }: BookCardProps) {
     >
       {/* Cover image - mobile: centered on top; desktop: fixed width on left */}
       <div className="flex justify-center sm:block sm:flex-shrink-0 sm:w-48 pt-4 sm:pt-0">
-        <div className="relative w-40 sm:w-full overflow-hidden bg-surface" style={{ aspectRatio: "2/3" }}>
+        <div
+          className="relative w-40 sm:w-full overflow-hidden bg-surface"
+          style={{ aspectRatio: "2/3" }}
+        >
           {imgError ? (
             <div className="w-full h-full flex items-center justify-center">
-              <span className="font-mono text-[10px] text-muted uppercase tracking-widest">No image</span>
+              <span className="font-mono text-[10px] text-muted uppercase tracking-widest">
+                No image
+              </span>
             </div>
           ) : (
             <Image
@@ -46,9 +51,7 @@ export function BookCard({ item }: BookCardProps) {
           <h2 className="font-fraunces italic text-foreground text-xl sm:text-2xl leading-snug">
             {item.title}
           </h2>
-          <p className="font-mono text-xs text-muted mt-1">
-            by {item.creator}
-          </p>
+          <p className="font-mono text-xs text-muted mt-1">by {item.creator}</p>
         </div>
 
         {item.note && (
@@ -59,13 +62,20 @@ export function BookCard({ item }: BookCardProps) {
 
         <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 font-mono text-[10px] uppercase tracking-widest text-muted mt-1">
           {item.publishedYear && (
-            <span>Published <span className="text-foreground">{item.publishedYear}</span></span>
+            <span>
+              Published{" "}
+              <span className="text-foreground">{item.publishedYear}</span>
+            </span>
           )}
           {item.readDate && (
-            <span>Read <span className="text-foreground">{item.readDate}</span></span>
+            <span>
+              Read <span className="text-foreground">{item.readDate}</span>
+            </span>
           )}
           {item.rating && (
-            <span>Rating <span className="text-foreground">★ {item.rating}/5</span></span>
+            <span>
+              Rating <span className="text-foreground">★ {item.rating}/5</span>
+            </span>
           )}
         </div>
       </div>
@@ -73,8 +83,15 @@ export function BookCard({ item }: BookCardProps) {
   );
 
   return item.url ? (
-    <Link href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+    <Link
+      href={item.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block"
+    >
       {inner}
     </Link>
-  ) : inner;
+  ) : (
+    inner
+  );
 }
