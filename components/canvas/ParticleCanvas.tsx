@@ -12,6 +12,14 @@ export function ParticleCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Read from DOM attribute on each frame so theme changes apply without re-init
+    function isDark() {
+      return document.documentElement.getAttribute("data-color-scheme") === "dark";
+    }
+    function getRgb() {
+      return isDark() ? "255,255,255" : "0,0,0";
+    }
+
     let width = 0;
     let height = 0;
     let animFrameId: number;
@@ -19,7 +27,7 @@ export function ParticleCanvas() {
 
     class Particle {
       x: number; y: number; vx: number; vy: number;
-      radius: number; baseAlpha: number; color: string;
+      radius: number; baseAlpha: number;
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
@@ -27,7 +35,6 @@ export function ParticleCanvas() {
         this.vy = (Math.random() - 0.5) * 0.3;
         this.radius = Math.random() * 1.2 + 0.4;
         this.baseAlpha = Math.random() * 0.3 + 0.1;
-        this.color = `rgba(255,255,255,${this.baseAlpha})`;
       }
       update() {
         this.x += this.vx;
@@ -38,7 +45,7 @@ export function ParticleCanvas() {
         else if (this.y > height + 50) this.y = -50;
         ctx!.beginPath();
         ctx!.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx!.fillStyle = this.color;
+        ctx!.fillStyle = `rgba(${getRgb()},${this.baseAlpha})`;
         ctx!.fill();
       }
     }
@@ -62,9 +69,9 @@ export function ParticleCanvas() {
       if (mouse.x !== undefined && mouse.y !== undefined) {
         ctx!.beginPath();
         const g = ctx!.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, mouse.radius);
-        g.addColorStop(0, "rgba(255,255,255,0.03)");
-        g.addColorStop(0.5, "rgba(255,255,255,0.01)");
-        g.addColorStop(1, "rgba(0,0,0,0)");
+        g.addColorStop(0, `rgba(${getRgb()},${isDark() ? 0.03 : 0.015})`);
+        g.addColorStop(0.5, `rgba(${getRgb()},${isDark() ? 0.01 : 0.005})`);
+        g.addColorStop(1, `rgba(${getRgb()},0)`);
         ctx!.fillStyle = g;
         ctx!.arc(mouse.x, mouse.y, mouse.radius, 0, Math.PI * 2);
         ctx!.fill();
@@ -77,7 +84,7 @@ export function ParticleCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 100) {
             ctx!.beginPath();
-            ctx!.strokeStyle = `rgba(255,255,255,${0.08 * (1 - dist / 100)})`;
+            ctx!.strokeStyle = `rgba(${getRgb()},${(isDark() ? 0.08 : 0.1) * (1 - dist / 100)})`;
             ctx!.lineWidth = 0.5;
             ctx!.moveTo(particles[a].x, particles[a].y);
             ctx!.lineTo(particles[b].x, particles[b].y);
@@ -90,7 +97,7 @@ export function ParticleCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < mouse.radius) {
             ctx!.beginPath();
-            ctx!.strokeStyle = `rgba(255,255,255,${(1 - dist / mouse.radius) * 0.15})`;
+            ctx!.strokeStyle = `rgba(${getRgb()},${(1 - dist / mouse.radius) * (isDark() ? 0.15 : 0.2)})`;
             ctx!.lineWidth = 0.8;
             ctx!.moveTo(particles[a].x, particles[a].y);
             ctx!.lineTo(mouse.x, mouse.y);
