@@ -1,6 +1,7 @@
 import { TopNav } from "@/components/nav/TopNav";
 import { CornerNav } from "@/components/nav/CornerNav";
 import { SiteTitle } from "@/components/title/SiteTitle";
+import { ParticleCanvas } from "@/components/canvas/ParticleCanvas";
 import { EDITORIAL_NOTE } from "@/constants/copy";
 
 interface ShellProps {
@@ -12,6 +13,8 @@ export function Shell({ children }: ShellProps) {
 
   return (
     <div className="min-h-dvh text-foreground p-6 sm:p-8 flex flex-col relative z-[1]">
+      <ParticleCanvas />
+
       {/* Skip to content */}
       <a
         href="#main-content"
